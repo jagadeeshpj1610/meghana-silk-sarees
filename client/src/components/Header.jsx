@@ -10,7 +10,7 @@ const Header = () => {
 
             </div>
             <div className="headerButtons">
-                <Link className='signUpBtn'>Signup</Link>
+                <Link to="/signup" className='signUpBtn'>Signup</Link>
                 <Link to="/login" className='loginBtn'>Login</Link>
                 <Link to="/cart" className='cartBtn'>Add to 🛒</Link>
             </div>

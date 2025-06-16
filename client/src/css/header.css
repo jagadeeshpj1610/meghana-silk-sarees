@@ -28,6 +28,13 @@
     text-align: center;
 }
 
+.signUpBtn:hover, .loginBtn:hover, .cartBtn:hover {
+    background-color: skyblue;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
 body {
     margin: 0;
     padding: 0;
