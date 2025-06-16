@@ -1,0 +1,44 @@
+.headerDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    height: 95px;
+}
+
+.headerButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+}
+
+.signUpBtn, .loginBtn, .cartBtn {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    min-width: 100px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.headerDiv h1 {
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+.headerDiv h1:hover {
+    cursor: pointer;
+    color: skyblue;
+}
+
