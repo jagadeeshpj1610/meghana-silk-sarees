@@ -1,0 +1,80 @@
+.loginDiv {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fafafa;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.loginDiv h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.loginDiv label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.loginDiv  input {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.loginDiv button {
+    width: 50%;
+    padding: 12px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.loginDiv button:hover {
+    background-color: skyblue;
+    color: black;
+}
+
+.loginDiv button {
+    margin: 0 auto;
+    display: block;
+}
+
+.signupLink {
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+    margin: 10px;
+}
+
+.loginButtonDiv p {
+    text-align: center;
+    margin: 0;
+    padding: 5px;
+    color: black;
+}
+
+
+.signupPrompt:hover {
+
+    text-decoration: underline;
+    color: red;
+    cursor: pointer;
+}
