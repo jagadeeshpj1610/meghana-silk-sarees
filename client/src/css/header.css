@@ -26,6 +26,7 @@
     min-width: 100px;
     text-decoration: none;
     text-align: center;
+    text-decoration: none;
 }
 
 .signUpBtn:hover, .loginBtn:hover, .cartBtn:hover {

@@ -1,80 +1,78 @@
+
+
 .loginDiv {
-    max-width: 400px;
-    margin: 80px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #fafafa;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  height: auto;
+  background-color: #fdfdfd;
+  border: 1px solid #ddd;
+  border-radius: 10px;
 }
 
 .loginDiv h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: black;
+  text-align: center;
+  margin-bottom: 20px;
+  color: black;
 }
 
 .formGroup {
-    margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
-.loginDiv label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+.formGroup label {
+  font-weight: bold;
+  margin-top: 12px;
+  margin-bottom: 5px;
+  color: #333;
 }
 
-.loginDiv  input {
-    width: 90%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 20px;
+.formGroup input {
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-bottom: 20px;
 }
 
-.loginDiv button {
-    width: 50%;
-    padding: 12px;
-    background-color: black;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.formGroup input:focus {
+  border-color: black;
+  outline: none;
 }
 
-.loginDiv button:hover {
-    background-color: skyblue;
-    color: black;
+.loginButtonDiv {
+  margin-top: 20px;
 }
 
-.loginDiv button {
-    margin: 0 auto;
-    display: block;
+.loginButtonDiv button {
+  width: 100%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-.signupLink {
-    text-align: center;
-    text-decoration: none;
-    padding: 10px;
-    margin: 10px;
+.loginButtonDiv button:hover {
+  background-color: skyblue;
 }
 
-.loginButtonDiv p {
-    text-align: center;
-    margin: 0;
-    padding: 5px;
-    color: black;
+.signupRedirect {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
 }
 
+.signupRedirect a {
+  font-weight: bold;
+  text-decoration: none;
+}
 
-.signupPrompt:hover {
-
-    text-decoration: underline;
-    color: red;
-    cursor: pointer;
+.signupRedirect a:hover {
+  text-decoration: underline;
+  color: red;
 }
