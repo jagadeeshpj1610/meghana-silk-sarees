@@ -5,12 +5,12 @@ const authMiddleware = (req, res, next) => {
     const token = req.cookies.token;
     console.log(token);
     if (!token) {
-      return res.json({ message: "You are not authorised" });
+      return res.status(400).json({ message: "You are not authorised" });
     }
     next();
   } catch (err) {
     console.log(err);
-    res.json({ message: "You are not authorised" });
+    res.status(400).json({ message: "You are not authorised" });
   }
 }
 
