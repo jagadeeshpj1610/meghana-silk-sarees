@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
-
+import '../css/sarees.css'
 const Sarees = () => {
-    const [photo, setPhoto] = useState(null); 
+    const [sarees, setSarees] = useState([]);
 
     const fetchSarees = async () => {
         try {
             const res = await fetch('http://localhost:8000/upload', {
                 method: 'GET',
+                credentials: 'include'
             });
             const data = await res.json();
-            console.log("Upload Success:", data);
-
-
-            setPhoto(data.photos[0].url);
-
+            setSarees(data.photos)
         } catch (error) {
             console.log("Upload failed:", error);
         }
@@ -25,7 +22,11 @@ const Sarees = () => {
 
     return (
         <div className="sareesContainer">
-            {photo ? (<img src={photo} alt="saree" style={{ width: "300px", borderRadius: "10px" }} />) : (<p>Loading image...</p>)}
+                {
+                    sarees.map((saree, index) => (
+                        <img className="image" key={saree.photoId} src={saree.url} alt={`saree-${index + 1}`} />
+                    ))
+                }
         </div>
     );
 };
