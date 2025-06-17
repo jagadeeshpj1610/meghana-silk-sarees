@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import '../css/sarees.css'
+import SareeDetails from "./SareeDetails";
+
+
 const Sarees = () => {
     const [sarees, setSarees] = useState([]);
 
@@ -22,11 +25,16 @@ const Sarees = () => {
 
     return (
         <div className="sareesContainer">
-                {
-                    sarees.map((saree, index) => (
+            {
+                sarees.map((saree, index) => (
+                    <div style={{display:"flex", flexDirection:"column"}}>
                         <img className="image" key={saree.photoId} src={saree.url} alt={`saree-${index + 1}`} />
-                    ))
-                }
+                        <SareeDetails />
+                    </div>
+
+                ))
+            }
+
         </div>
     );
 };
