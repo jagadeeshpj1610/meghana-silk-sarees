@@ -29,9 +29,9 @@ const Sarees = () => {
                 <p>No sarees Available</p>
             ) :
                 sarees.map((saree, index) => (
-                    <div key={saree._id} style={{ display: "flex", flexDirection: "column" }}>
+                    <div key={saree._id} className="sareeCard">
                         <img className="image" src={saree.sareePhoto.url} alt={`saree-${index + 1}`} />
-                        <SareeDetails />
+                        <SareeDetails sareesInfo = {saree} />
                     </div>
 
                 ))
