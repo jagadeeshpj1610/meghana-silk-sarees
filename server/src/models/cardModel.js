@@ -10,9 +10,9 @@ const cardSchema = mongoose.Schema({
     required: true,
   },
   sareePhoto: {
-    // type: mongoose.Schema.Types.ObjectId,
-    // ref: "Photo",
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Photo",
+    // type: String,
     required: true,
   }
 })
