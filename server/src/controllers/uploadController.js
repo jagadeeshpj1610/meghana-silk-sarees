@@ -1,5 +1,5 @@
 import uploadFunction from "../helpers/cloudinaryHelpers.js";
-import photoModel from "../../models/photoModel.js";
+import photoModel from "../models/photoModel.js";
 import fs from "fs";
 
 const uploadPhoto = async (req, res) => {
