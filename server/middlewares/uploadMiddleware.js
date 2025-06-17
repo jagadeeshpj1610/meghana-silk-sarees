@@ -5,10 +5,10 @@ import path from "path"
 const storage = multer.diskStorage({
 
   destination: (req, file, cb) => {
-    if (!fs.existsSync("temp/uploads")) {
-      fs.mkdirSync("temp/uploads", { recursive: true });
+    if (!fs.existsSync("uploads")) {
+      fs.mkdirSync("uploads", { recursive: true });
     }
-    cb(null, "temp/uploads");
+    cb(null, "uploads");
   },
   filename: (req, file, cb) => {
     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
