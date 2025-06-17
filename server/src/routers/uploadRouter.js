@@ -1,9 +1,10 @@
-import express from express;
-import { photoUpload } from "../controllers/uploadController";
-const uploadRouter = express.Router()
+import express from "express";
+import { photoUpload } from "../controllers/uploadController.js";
+import multer from 'multer';
+const uploadRouter = express.Router();
 
-uploadRouter.get("/", (req, res)=> {
-	res.json({})
+uploadRouter.post("/", (req, res)=> {
+	res.json({message: "hi friends"})
 })
 
 export {
