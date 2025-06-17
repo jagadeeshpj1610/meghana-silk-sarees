@@ -5,13 +5,13 @@ import fs from "fs";
 const uploadPhoto = async (req, res) => {
   const result = await uploadFunction(req.file.path);
   fs.unlinkSync(req.file.path);
-  await photoModel.create({photoId: result.public_id, url: result.secure_url, user: res.user.id});
+  await photoModel.create({photoId: result.public_id, url: result.secure_url});
 
   res.json({file: req.file, result,message: "uploaded successfully"})
 }
 
 const fetchPhoto = async (req, res) => {
-  const photos = await photoModel.find({user: res.user.id}).populate('user');
+  const photos = await photoModel.find({});
   res.json({photos})
 }
 

@@ -5,7 +5,7 @@ import { authMiddleware } from "../middlewares/authMiddleware.js";
 const uploadRouter = express.Router();
 
 uploadRouter.post("/", authMiddleware, uploadMiddleware.single('saree-image'), uploadPhoto)
-uploadRouter.get("/", authMiddleware, fetchPhoto)
+uploadRouter.get("/", fetchPhoto)
 
 export {
 	uploadRouter,
