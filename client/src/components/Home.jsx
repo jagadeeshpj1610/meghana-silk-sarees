@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-import UploadSaree from './Sarees'
+import UploadSaree from './upload'
 
 const Home = () => {
     return (
