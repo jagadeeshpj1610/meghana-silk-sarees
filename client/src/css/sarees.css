@@ -1,29 +1,129 @@
-.sareesContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+/* .sareesContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 20px;
     padding: 20px;
-    border-radius: 10px;
-    margin-top: 15px;
-}
-
-.image{
-    padding: 5px;
-    width: 300px;
-    height: 180px;
-    border-radius: 12px;
+    justify-items: center;
 }
 
 .sareeCard {
+    width: 100%;
+    max-width: 180px;
     border: 1px solid #ccc;
-    border-radius: 12px;
-    padding: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 360px;
+}
+
+.image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.sareeDetails {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sareeDetails p {
+    font-size: 13px;
+    margin: 0;
+}
+
+.buyBtns {
+    margin-top: 6px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.buyBtns button {
+    font-size: 12px;
+    padding: 4px 8px;
+    border: none;
+    background-color: #ff6b6b;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.buyBtns button:hover {
+    background-color: #e04848;
+} */
+
+
+.sareesContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    /* gap: 20px; */
+    padding: 25px;
+    margin: 10px;
+    justify-items: center;
+}
+
+.sareeCard {
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    padding: 5px;
+}
+
+.sareeDetails {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sareeDetails p {
+    font-size: 15px;
+    margin: 0;
+}
+
+.buyBtns {
+    margin-top: 6px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.buyBtns button {
+    font-size: 12px;
+    padding: 4px 8px;
+    border: none;
+    width: 120px;
+    height: 35px;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.buyBtns button:hover {
+    background-color:skyblue;
 }
