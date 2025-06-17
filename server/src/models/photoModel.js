@@ -8,6 +8,11 @@ const photoSchema = mongoose.Schema({
   url: {
     required: true,
     type: String,
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
   }
 })
 

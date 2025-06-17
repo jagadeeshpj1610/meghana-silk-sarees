@@ -33,10 +33,6 @@ const login = async (req, res) => {
       maxAge: 24 * 60 * 60 * 1000,
     })
 
-    // const cookie = req.cookies.token;
-    // const user1 = jwt.verify(cookie, process.env.JWT_SECRET_KEY)
-    // console.log(cookie)
-
     res.json(user);
 
   } catch (err) {
@@ -76,14 +72,26 @@ const signup = async (req, res) => {
 const logout = (req, res) => {
   try {
     res.clearCookie('token');
-    res.status(200).json({message: "Logout successfully"})
+    res.status(200).json({ message: "Logout successfully" })
   } catch (error) {
-    res.status(500).json({message: "Internal server error"})
+    res.status(500).json({ message: "Internal server error" })
   }
+}
+
+const isLoggedIn = (req, res) => {
+  try {
+    if(req.cookies.token){
+      return res.json({isLoggedIn: true})
+    }
+    res.json({isLoggedIn:false})
+  } catch (error) {
+    res.json({isLoggedIn: false})
+  }  
 }
 
 export {
   login,
   signup,
   logout,
+  isLoggedIn,
 }
