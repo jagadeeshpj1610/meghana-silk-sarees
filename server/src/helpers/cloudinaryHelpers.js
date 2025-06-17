@@ -1,4 +1,4 @@
-import cloudinary from "../config/cloudinary";
+import cloudinary from "../../config/cloudinary";
 
 const uploadFunction = async (filePath) => {
   const uploadResult = await cloudinary.uploader
