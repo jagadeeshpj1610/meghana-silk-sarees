@@ -1,9 +1,10 @@
 import uploadFunction from "../helpers/cloudinaryHelpers.js";
 import fs from "fs";
 
-const photoUpload = (req, res) => {
-  const result = uploadFunction(req.file.path);
-    
+const photoUpload = async (req, res) => {
+  const result = await uploadFunction(req.file.path);
+  console.log(result);
+  res.json({file: req.file, result,message: "uploaded successfully"})  
 }
 
 export {
