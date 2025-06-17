@@ -9,9 +9,14 @@ const cardSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  photo: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Photo",
+  sareePhoto: {
+    // type: mongoose.Schema.Types.ObjectId,
+    // ref: "Photo",
+    type: String,
     required: true,
   }
 })
+
+const cardModel = mongoose.model("Card", cardSchema);
+
+export default cardModel;
