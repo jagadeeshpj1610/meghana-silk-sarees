@@ -22,9 +22,17 @@ const uploadCard = async (req, res) => {
   }
 }
 
-// const fetchCard = (req, res) => {
-//   const 
-// }
+const fetchCard = async (req, res) => {
+  try{
+
+    const cards = await cardModel.find({}).populate('sareePhoto')
+    res.json(cards)
+
+  } catch(err){
+    console.log(err);
+    res.status(400).json({message: "Internal server error"})
+  }
+}
 
 export {
   uploadCard,
