@@ -1,0 +1,15 @@
+.sareesContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.image{
+    padding: 5px;
+    width: 350px;
+    height: 200px;
+}
