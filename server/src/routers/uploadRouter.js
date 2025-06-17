@@ -1,11 +1,9 @@
 import express from "express";
 import { photoUpload } from "../controllers/uploadController.js";
-import multer from 'multer';
+import uploadMiddleware from "../../middlewares/uploadMiddleware.js";
 const uploadRouter = express.Router();
 
-uploadRouter.post("/", (req, res)=> {
-	res.json({message: "hi friends"})
-})
+uploadRouter.post("/", uploadMiddleware.single('saree-image'),photoUpload)
 
 export {
 	uploadRouter,
