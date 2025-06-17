@@ -4,19 +4,37 @@ import Login from './components/Login';
 import Signup from './components/SignUp';
 // import Cart from './components/Cart';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import { useState, useEffect } from 'react';
+import Header from './components/Header';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
+
+  useEffect(() => {
+    const fetchFunc = async () => {
+      const response = await fetch("http://localhost:8000/auth/isLoggedIn", {
+        credentials: "include"
+      });
+      const text = await response.json();
+      console.log(text);
+      
+      setIsLoggedIn(text.isLoggedIn);
+    };
+    fetchFunc();
+  }, []);
+
+  if (isLoggedIn === null) return <h1>Loading...</h1>;
+
   return (
     <Router>
+      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        {!isLoggedIn && <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />}
+        {!isLoggedIn && <Route path="/signup" element={<Signup />} />}
         {/* <Route path="/cart" element={<Cart />} /> */}
       </Routes>
     </Router>
   );
 }
-
 export default App;

@@ -15,7 +15,7 @@
     padding: 20px;
 }
 
-.signUpBtn, .loginBtn, .cartBtn {
+.signUpBtn, .loginBtn, .cartBtn, .logoutBtn {
     background-color: white;
     color: black;
     border: none;
@@ -29,7 +29,7 @@
     text-decoration: none;
 }
 
-.signUpBtn:hover, .loginBtn:hover, .cartBtn:hover {
+.signUpBtn:hover, .loginBtn:hover, .cartBtn:hover, .logoutBtn:hover {
     background-color: skyblue;
     color: white;
     font-size: 1.2rem;

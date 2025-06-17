@@ -8,12 +8,12 @@ const Sarees = () => {
 
     const fetchSarees = async () => {
         try {
-            const res = await fetch('http://localhost:8000/upload', {
+            const res = await fetch('http://localhost:8000/cards', {
                 method: 'GET',
                 credentials: 'include'
             });
             const data = await res.json();
-            setSarees(data.photos)
+            setSarees(data)
         } catch (error) {
             console.log("Upload failed:", error);
         }
@@ -25,10 +25,12 @@ const Sarees = () => {
 
     return (
         <div className="sareesContainer">
-            {
+            {sarees.length === 0 ? (
+                <p>No sarees Available</p>
+            ) :
                 sarees.map((saree, index) => (
-                    <div style={{display:"flex", flexDirection:"column"}}>
-                        <img className="image" key={saree.photoId} src={saree.url} alt={`saree-${index + 1}`} />
+                    <div key={saree._id} style={{ display: "flex", flexDirection: "column" }}>
+                        <img className="image" src={saree.sareePhoto.url} alt={`saree-${index + 1}`} />
                         <SareeDetails />
                     </div>
 

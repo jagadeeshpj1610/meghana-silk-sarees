@@ -1,10 +1,10 @@
-import express from "express";
+// import express from "express";
 
-const uploadRouter = express.Router();
+// const uploadRouter = express.Router();
 
-uploadRouter.post("/", )
-uploadRouter.get("/", fetchPhoto)
+// uploadRouter.post("/", )
+// uploadRouter.get("/", fetchPhoto)
 
-export {
-	uploadRouter,
-}
+// export {
+// 	uploadRouter,
+// }

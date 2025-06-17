@@ -39,25 +39,23 @@ const SignUp = () => {
     }
 
     return (
-        <>
-            <Header />
-            <div className="signUpDiv">
-                <h2>Sign Up</h2>
-                <form onSubmit={handleSignup}>
-                    <div className="formDiv">
-                        <label htmlFor="name">Name:</label>
-                        <input type="text" className="name" required autoComplete="off" onChange={(e)=>setName(e.target.value)}/>
-                        <label htmlFor="email">Email:</label>
-                        <input type="email" className="email" required autoComplete="off" onChange={(e)=>setEmail(e.target.value)}/>
-                        <label htmlFor="password">Password:</label>
-                        <input type="password" className="password" required autoComplete="new-password"  onChange={(e)=>setPassword(e.target.value)} />
-                        <div className={`message ${message && 'visible'}`}>{message}</div>
-                        <button type="submit">Sign Up</button>
-                        <p className="loginRedirect">Already have an account? <Link to="/login">Login</Link></p>
-                    </div>
-                </form>
-            </div>
-        </>
+
+        <div className="signUpDiv">
+            <h2>Sign Up</h2>
+            <form onSubmit={handleSignup}>
+                <div className="formDiv">
+                    <label htmlFor="name">Name:</label>
+                    <input type="text" className="name" required autoComplete="off" onChange={(e) => setName(e.target.value)} />
+                    <label htmlFor="email">Email:</label>
+                    <input type="email" className="email" required autoComplete="off" onChange={(e) => setEmail(e.target.value)} />
+                    <label htmlFor="password">Password:</label>
+                    <input type="password" className="password" required autoComplete="new-password" onChange={(e) => setPassword(e.target.value)} />
+                    <div className={`message ${message && 'visible'}`}>{message}</div>
+                    <button type="submit">Sign Up</button>
+                    <p className="loginRedirect">Already have an account? <Link to="/login">Login</Link></p>
+                </div>
+            </form>
+        </div>
 
     );
 }
