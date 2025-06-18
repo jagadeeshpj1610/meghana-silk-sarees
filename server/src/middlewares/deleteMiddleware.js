@@ -15,7 +15,7 @@ const deleteMiddleware = async (req, res, next) => {
     }
     const deletedPhoto = await deleteFunction(photo.photoId);
     if(deletedPhoto.result === 'not found'){
-      return res.status(400).json({message: "This photo is already deleted"});
+      res.status(400).json({message: "This photo is already deleted"});
     }
     console.log(deletedPhoto)
     next()

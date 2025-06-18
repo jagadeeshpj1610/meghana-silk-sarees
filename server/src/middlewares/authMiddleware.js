@@ -7,10 +7,10 @@ const authMiddleware = (req, res, next) => {
     const token = req.cookies.token;
 
     if (!token) {
-      return res.status(401).json({ message: "You are not authorised" });
+      return res.status(401).json({ message: "You are not authenticated. Please Login" });
     }
     const user = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    res.user = { id: user.id, name: user.name, email: user.email, role: user.role };
+    req.user = { id: user.id, name: user.name, email: user.email, role: user.role };
     next();
   } catch (err) {
     console.log(err);

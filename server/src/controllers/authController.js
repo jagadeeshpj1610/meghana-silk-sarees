@@ -92,7 +92,7 @@ const isLoggedIn = (req, res) => {
 
 const isAdmin = (req, res) => {
   try{
-    if(res.user.role === "admin"){
+    if(req.user.role === "admin"){
       return res.json({isAdmin: true});
     }
     res.json({isAdmin: false})
