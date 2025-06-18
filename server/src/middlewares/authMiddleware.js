@@ -14,7 +14,7 @@ const authMiddleware = (req, res, next) => {
     next();
   } catch (err) {
     console.log(err);
-    res.status(400).json({ message: "You are not authorised" });
+    res.status(400).json({ message: "You are not authenticated" });
   }
 }
 

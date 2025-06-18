@@ -90,9 +90,22 @@ const isLoggedIn = (req, res) => {
   }  
 }
 
+const isAdmin = (req, res) => {
+  try{
+    if(res.user.role === "admin"){
+      return res.json({isAdmin: true});
+    }
+    res.json({isAdmin: false})
+  } catch(err){
+    console.log(err);
+    res.status(400).json({isAdmin: false, message: "Internal server error"});
+  }
+}
+
 export {
   login,
   signup,
   logout,
   isLoggedIn,
+  isAdmin,
 }
