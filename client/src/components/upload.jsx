@@ -1,74 +1,108 @@
-import { useState } from "react";
-import '../css/addNewSaree.css'
-import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
 
-const UploadSaree = () => {
+import { useState,useRef, useEffect } from "react";
+import '../css/addNewSaree.css'
+
+
+const UpdateSaree = ({ sareeInfo, isEditing, setIsEditing, onSuccess }) => {
   const [file, setFile] = useState(null);
   const [sareeName, setSareeName] = useState("");
   const [sareePrice, setSareePrice] = useState("");
-  const [message, setMessage] = useState("")
-  const [isUploading, seIsUploading] = useState(false)
-  const fileInput = useRef(null)
-  const navigate = useNavigate()
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const fileInput = useRef(null);
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+  useEffect(() => {
+    if (isEditing && sareeInfo) {
+      setSareeName(sareeInfo.sareeName);
+      setSareePrice(sareeInfo.sareePrice);
+    }
+  }, [isEditing, sareeInfo]);
 
-  const handleUpload = async () => {
-    if (!file || !sareeName || !sareePrice) {
-      console.log("All fields required");
+  const handleSubmit = async () => {
+    if (!sareeName || !sareePrice || (!file && !isEditing)) {
+      setMessage("All fields required");
       return;
     }
 
-    seIsUploading(true)
+    setLoading(true);
 
     const formData = new FormData();
-    formData.append("saree-image", file);
+    if (file) formData.append("saree-image", file);
     formData.append("sareeName", sareeName);
     formData.append("sareePrice", sareePrice);
 
+    const url = isEditing
+      ? `http://localhost:8000/cards/${sareeInfo._id}`
+      : `http://localhost:8000/cards`;
+    const method = isEditing ? "PUT" : "POST";
+
     try {
-      const res = await fetch("http://localhost:8000/cards", {
-        method: "POST",
-        body: formData,
+      const res = await fetch(url, {
+        method,
         credentials: "include",
+        body: formData,
       });
 
       const data = await res.json();
-      console.log("Upload Success:", data);
       if (res.ok) {
-        setFile(null)
-        setSareeName("")
-        setSareePrice("")
-        fileInput.current.value = null
-        setMessage("New Saree is uploded succesfully")
-        setTimeout(() => {
-            setMessage("")
-            navigate('/')
-        }, 4000);
+        setMessage(isEditing ? "Updated successfully" : "Uploaded successfully");
+        onSuccess && onSuccess(data.card);
+        if (isEditing) {
+          setTimeout(() => {
+            setMessage("");
+            setIsEditing(false);
+          }, 2000);
+        } else {
+          // clear form
+          setFile(null);
+          setSareeName("");
+          setSareePrice("");
+          fileInput.current.value = null;
+        }
+      } else {
+        setMessage("Failed to submit form");
       }
     } catch (error) {
-      console.log("Upload failed:", error);
-    } finally{
-        seIsUploading(false)
+      console.error("Error:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="newSareeContainer">
-      <h2 className="headingNewSaree">Upload Silk Saree</h2>
-      <div style={{color:'green', fontSize:'1rem', textAlign:'center'}}>{message}</div>
-      <label htmlFor="">Saree Name:</label>
-      <input type="text" placeholder="Saree Name" value={sareeName} onChange={(e) => setSareeName(e.target.value)} />
-      <label htmlFor="">Saree Price:</label>
-      <input type="text" placeholder="Saree Price" value={sareePrice} onChange={(e) => setSareePrice(e.target.value)} />
-      <label htmlFor="">Upload the file:</label>
-      <input type="file" accept="image/*" ref={fileInput} onChange={handleFileChange} />
-      <button className="uploadBtn" onClick={handleUpload} disabled={isUploading}>{isUploading ? "Uploading...." : "Upload"}</button>
+      <h2>{isEditing ? "Edit Saree" : "Upload Saree"}</h2>
+      <div style={{ color: 'green', textAlign: 'center' }}>{message}</div>
+
+      <label>Saree Name:</label>
+      <input
+        type="text"
+        value={sareeName}
+        onChange={(e) => setSareeName(e.target.value)}
+      />
+
+      <label>Saree Price:</label>
+      <input
+        type="text"
+        value={sareePrice}
+        onChange={(e) => setSareePrice(e.target.value)}
+      />
+
+      <label>{isEditing ? "Change Image (optional):" : "Upload Image:"}</label>
+      <input type="file" accept="image/*" ref={fileInput} onChange={(e) => setFile(e.target.files[0])} />
+
+      <button className="uploadBtn" onClick={handleSubmit} disabled={loading}>
+        {loading ? (isEditing ? "Updating..." : "Uploading...") : isEditing ? "Update" : "Upload"}
+      </button>
+
+      {isEditing && (
+        <button onClick={() => setIsEditing(false)} style={{ marginTop: "10px" }}>
+          Cancel
+        </button>
+      )}
     </div>
   );
 };
 
-export default UploadSaree;
+
+export default UpdateSaree

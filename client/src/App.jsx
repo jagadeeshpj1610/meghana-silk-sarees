@@ -6,7 +6,9 @@ import Signup from './components/SignUp';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
-import UploadSaree from './components/upload';
+import UpdateSaree from './components/upload';
+
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -34,7 +36,7 @@ function App() {
         {!isLoggedIn && <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />}
         {!isLoggedIn && <Route path="/signup" element={<Signup />} />}
         {/* <Route path="/cart" element={<Cart />} /> */}
-        <Route path='/addNewSaree' element = {<UploadSaree /> } />
+        <Route path='/addNewSaree' element = {<UpdateSaree /> } />
       </Routes>
     </Router>
   );
