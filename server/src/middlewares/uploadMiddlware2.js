@@ -1,4 +1,4 @@
-import uploadFunction from "../helpers/cloudinaryHelpers.js";
+import {uploadFunction} from "../helpers/cloudinaryHelpers.js";
 import photoModel from "../models/photoModel.js";
 import fs from "fs";
 

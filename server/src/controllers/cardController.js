@@ -60,11 +60,12 @@ const deleteCard = async (req, res) => {
 
     const cardId = req.params.id;
     const deletedCard = await cardModel.findByIdAndDelete(cardId);
-    if(deleteCard){
+    if(!deletedCard){
       return res.status(400).json({message: "This card is not found"});
     }
-    
-    res.json(deletedCard)
+
+    res.json(deletedCard);
+  
   } catch(err){
     console.log(err);
     res.status(400).json({message: "Internal server error"});
