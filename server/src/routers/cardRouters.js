@@ -7,6 +7,6 @@ import { fetchCard, uploadCard } from "../controllers/cardController.js";
 const cardRouter = express.Router();
 
 cardRouter.post('/', uploadMiddleware.single('saree-image'), uploadPhoto, uploadCard);
-cardRouter.get('/', fetchCard);
+cardRouter.get('/',authMiddleware, fetchCard);
 
 export default cardRouter;
