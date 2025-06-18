@@ -11,7 +11,7 @@ const uploadFunction = async (filePath) => {
 
 const deleteFunction = async (publicId) => {
   try {
-    const deleteResult = await cloudinary.uploader.destroy(publicId);
+    const deleteResult = await cloudinary.uploader.destroy(publicId, {invalidate: true});
     return deleteResult;
   } catch(err){
     console.log(err);

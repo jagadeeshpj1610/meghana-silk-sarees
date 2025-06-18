@@ -16,7 +16,7 @@ const uploadCard = async (req, res) => {
       return res.status(400).json({ message: "Saree Price must be numbers" })
     }
     const uploadedCard = await cardModel.create({ sareeName, sareePrice, sareePhoto });
-    res.json({ uploadedCard })
+    res.json({ uploadedCard, message: "new card is created successfully" })
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: "Internal server error" })
@@ -24,51 +24,51 @@ const uploadCard = async (req, res) => {
 }
 
 const fetchCard = async (req, res) => {
-  try{
+  try {
 
     const cards = await cardModel.find({}).populate('sareePhoto')
-    res.json(cards)
+    res.json({ cards, message: "fetched successfully" })
 
-  } catch(err){
+  } catch (err) {
     console.log(err);
-    res.status(400).json({message: "Internal server error"})
+    res.status(400).json({ message: "Internal server error" })
   }
 }
 
 const updateCard = async (req, res) => {
   try {
     const cardId = req.params.id;
-    const {sareeName, sareePrice} = req.body;
+    const { sareeName, sareePrice } = req.body;
     const sareePhoto = res.uploadedPhoto.id;
-    if(!sareeName || !sareePrice){
-      return res.status(400).json({message: "sareeName, sareePrice are required"});
+    if (!sareeName || !sareePrice) {
+      return res.status(400).json({ message: "sareeName, sareePrice are required" });
     }
-    const card = await cardModel.findByIdAndUpdate(cardId, {sareeName, sareePrice, sareePhoto}, {new: true})
-    if(!card){
-      return res.status(400).json({message: "This card is not found"})
+    const card = await cardModel.findByIdAndUpdate(cardId, { sareeName, sareePrice, sareePhoto }, { new: true })
+    if (!card) {
+      return res.status(400).json({ message: "This card is not found" })
     }
-    res.json(card);
-    
+    res.json({ card, message: "Updated successfully" });
+
   } catch (error) {
     console.log(error);
-    res.status(400).json({message: "Internal Server Error"});
+    res.status(400).json({ message: "Internal Server Error" });
   }
 }
 
 const deleteCard = async (req, res) => {
-  try{
+  try {
 
     const cardId = req.params.id;
     const deletedCard = await cardModel.findByIdAndDelete(cardId);
-    if(!deletedCard){
-      return res.status(400).json({message: "This card is not found"});
+    if (!deletedCard) {
+      return res.status(400).json({ message: "This card is not found" });
     }
 
-    res.json(deletedCard);
-  
-  } catch(err){
+    res.json({ deletedCard, message: "This card is deleted successfully" });
+
+  } catch (err) {
     console.log(err);
-    res.status(400).json({message: "Internal server error"});
+    res.status(400).json({ message: "Internal server error" });
   }
 }
 

@@ -8,6 +8,10 @@ const uploadPhoto = async (req, res, next) => {
       return res.status(400).json({message: "Upload the file"});
     }
     const result = await uploadFunction(req.file.path);
+    if(!result){
+      console.log(result)
+      return res.status(400).json({message: "Internal Server Error"})
+    }
     fs.unlinkSync(req.file.path);
     const createdPhoto = await photoModel.create({ photoId: result.public_id, url: result.secure_url });
     res.uploadedPhoto = createdPhoto;
