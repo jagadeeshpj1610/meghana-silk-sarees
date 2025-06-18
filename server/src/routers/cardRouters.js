@@ -8,9 +8,9 @@ import deleteMiddleware from "../middlewares/deleteMiddleware.js";
 
 const cardRouter = express.Router();
 
-cardRouter.post('/',authMiddleware, adminMiddleware, uploadMiddleware.single('saree-image'), uploadPhoto, uploadCard);
+cardRouter.post('/', authMiddleware, adminMiddleware, uploadMiddleware.single('saree-image'), uploadPhoto, uploadCard);
 cardRouter.get('/', fetchCard);
-cardRouter.put('/:id',authMiddleware, adminMiddleware, updateCard);
-cardRouter.delete('/:id', authMiddleware, adminMiddleware, deleteMiddleware,deleteCard)
+cardRouter.put('/:id', authMiddleware, adminMiddleware, deleteMiddleware,uploadMiddleware.single('saree-image'), uploadPhoto, updateCard);
+cardRouter.delete('/:id', authMiddleware, adminMiddleware, deleteMiddleware, deleteCard)
 
 export default cardRouter;

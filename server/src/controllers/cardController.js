@@ -39,12 +39,12 @@ const updateCard = async (req, res) => {
   try {
     const cardId = req.params.id;
     const {sareeName, sareePrice} = req.body;
+    const sareePhoto = res.uploadedPhoto.id;
     if(!sareeName || !sareePrice){
       return res.status(400).json({message: "sareeName, sareePrice are required"});
     }
-
-    const card = await cardModel.findByIdAndUpdate(cardId, {sareeName, sareePrice}, {new: true})
-    if(card){
+    const card = await cardModel.findByIdAndUpdate(cardId, {sareeName, sareePrice, sareePhoto}, {new: true})
+    if(!card){
       return res.status(400).json({message: "This card is not found"})
     }
     res.json(card);
