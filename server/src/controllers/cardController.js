@@ -44,6 +44,9 @@ const updateCard = async (req, res) => {
     }
 
     const card = await cardModel.findByIdAndUpdate(cardId, {sareeName, sareePrice}, {new: true})
+    if(card){
+      return res.status(400).json({message: "This card is not found"})
+    }
     res.json(card);
     
   } catch (error) {
@@ -52,8 +55,25 @@ const updateCard = async (req, res) => {
   }
 }
 
+const deleteCard = async (req, res) => {
+  try{
+
+    const cardId = req.params.id;
+    const deletedCard = await cardModel.findByIdAndDelete(cardId);
+    if(deleteCard){
+      return res.status(400).json({message: "This card is not found"});
+    }
+    
+    res.json(deletedCard)
+  } catch(err){
+    console.log(err);
+    res.status(400).json({message: "Internal server error"});
+  }
+}
+
 export {
   uploadCard,
   fetchCard,
-  updateCard
+  updateCard,
+  deleteCard,
 };
