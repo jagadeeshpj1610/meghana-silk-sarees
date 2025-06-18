@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../css/addNewSaree.css'
 
 const UploadSaree = () => {
   const [file, setFile] = useState(null);
@@ -35,12 +36,15 @@ const UploadSaree = () => {
   };
 
   return (
-    <div>
-      <h2>Upload Silk Saree</h2>
+    <div className="newSareeContainer">
+      <h2 className="headingNewSaree">Upload Silk Saree</h2>
+      <label htmlFor="">Saree Name:</label>
       <input type="text" placeholder="Saree Name" onChange={(e) => setSareeName(e.target.value)} />
+      <label htmlFor="">Saree Price:</label>
       <input type="text" placeholder="Saree Price" onChange={(e) => setSareePrice(e.target.value)} />
+      <label htmlFor="">Upload the file:</label>
       <input type="file" accept="image/*" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload</button>
+      <button className="uploadBtn" onClick={handleUpload}>Upload</button>
     </div>
   );
 };
