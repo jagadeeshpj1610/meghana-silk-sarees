@@ -3,11 +3,19 @@ import photoModel from "../models/photoModel.js";
 import fs from "fs";
 
 const uploadPhoto = async (req, res, next) => {
-  const result = await uploadFunction(req.file.path);
-  fs.unlinkSync(req.file.path);
-  const createdPhoto = await photoModel.create({photoId: result.public_id, url: result.secure_url});
-  res.uploadedPhoto = createdPhoto;
-  next();
+  try {
+    const result = await uploadFunction(req.file.path);
+    fs.unlinkSync(req.file.path);
+    const createdPhoto = await photoModel.create({ photoId: result.public_id, url: result.secure_url });
+    res.uploadedPhoto = createdPhoto;
+    next();
+  } catch (err) {
+    console.log(err)
+    if (err.errno === -3008) {
+      console.log("You are offline", err.error);
+    }
+    res.status(400).json({ message: "Internal Server Error" });
+  }
   // res.json({file: req.file, result,message: "uploaded successfully"})
 }
 
