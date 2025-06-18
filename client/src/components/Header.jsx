@@ -24,7 +24,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
                 {isLoggedIn && (
                     <>
                         <button className='logoutBtn' onClick={() => setShowPopup(true)}>Logout</button>
-                        <Logout showPopup={showPopup} setShowPopup={setShowPopup} />
+                        <Logout showPopup={showPopup} setShowPopup={setShowPopup} setIsLoggedIn={setIsLoggedIn} />
                     </>
                 )}
                 <Link to="/cart" className='cartBtn'>My 🛒</Link>

@@ -1,7 +1,7 @@
 import '../css/logout.css'
 
 
-const Logout = ({ showPopup, setShowPopup }) => {
+const Logout = ({ showPopup, setShowPopup, setIsLoggedIn }) => {
 
     const handleLogout = async () => {
         await fetch("http://localhost:8000/auth/logout", {
