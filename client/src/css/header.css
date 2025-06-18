@@ -15,7 +15,7 @@
     padding: 20px;
 }
 
-.signUpBtn, .loginBtn, .cartBtn, .logoutBtn {
+.signUpBtn, .loginBtn, .cartBtn, .logoutBtn, .addNewSaree {
     background-color: white;
     color: black;
     border: none;
@@ -29,7 +29,11 @@
     text-decoration: none;
 }
 
-.signUpBtn:hover, .loginBtn:hover, .cartBtn:hover, .logoutBtn:hover {
+.linkHeading{
+    text-decoration: none;
+}
+
+.signUpBtn:hover, .loginBtn:hover, .cartBtn:hover, .logoutBtn:hover, .addNewSaree:hover {
     background-color: skyblue;
     color: white;
     font-size: 1.2rem;

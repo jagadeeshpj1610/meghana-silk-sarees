@@ -17,15 +17,17 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
     return (
         <div className="headerDiv">
             <div>
-                <h1>Meghana Silk Sarees</h1>
+                <Link to='/' className='linkHeading'><h1>Meghana Silk Sarees</h1></Link>
             </div>
             <div className="headerButtons">
+                <Link to='/addNewSaree' className='addNewSaree'>Add New Saree</Link>
                 {!isLoggedIn && (
                     <>
                         <Link to="/signup" className='signUpBtn'>Signup</Link>
                         <Link to="/login" className='loginBtn'>Login</Link>
                     </>
                 )}
+
                 {isLoggedIn && (
                     <button className='logoutBtn' onClick={handleLogout}>Logout</button>
                 )}
