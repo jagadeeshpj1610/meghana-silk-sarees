@@ -65,3 +65,33 @@
 .buyBtns button:hover {
     background-color:skyblue;
 }
+
+.edit{
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.delete{
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.edit:hover{
+    width: 26px;
+    height: 26px;
+}
+
+.delete:hover{
+    width: 26px;
+    height: 26px;
+}
+
+.modesContent{
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+}

@@ -13,7 +13,7 @@ const Sarees = () => {
                 credentials: 'include'
             });
             const data = await res.json();
-            setSarees(data)
+            setSarees(data.cards)
         } catch (error) {
             console.log("Upload failed:", error);
         }
@@ -28,7 +28,7 @@ const Sarees = () => {
             {sarees.length === 0 ? (
                 <p>No sarees Available</p>
             ) :
-                sarees.map((saree, index) => (
+               sarees.map((saree, index) => (
                     <div key={saree._id} className="sareeCard">
                         <img className="image" src={saree.sareePhoto.url} alt={`saree-${index + 1}`} />
                         <SareeDetails sareesInfo = {saree} />
