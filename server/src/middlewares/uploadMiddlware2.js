@@ -10,9 +10,9 @@ const uploadPhoto = async (req, res, next) => {
     res.uploadedPhoto = createdPhoto;
     next();
   } catch (err) {
-    console.log(err)
-    if (err.errno === -3008) {
-      console.log("You are offline", err.error);
+    // console.log(err.error.Error)
+    if (err.error.errno === -3008) {
+      return res.status(400).json({message: `Yo bro, You are offline`});
     }
     res.status(400).json({ message: "Internal Server Error" });
   }

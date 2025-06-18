@@ -3,10 +3,11 @@ import { uploadPhoto } from "../middlewares/uploadMiddlware2.js";
 import uploadMiddleware from "../middlewares/uploadMiddleware.js";
 import { authMiddleware } from "../middlewares/authMiddleware.js";
 import { fetchCard, uploadCard } from "../controllers/cardController.js";
+import adminMiddleware from "../middlewares/adminMiddleware.js";
 
 const cardRouter = express.Router();
 
-cardRouter.post('/', uploadMiddleware.single('saree-image'), uploadPhoto, uploadCard);
+cardRouter.post('/',authMiddleware, adminMiddleware, uploadMiddleware.single('saree-image'), uploadPhoto, uploadCard);
 cardRouter.get('/',authMiddleware, fetchCard);
 
 export default cardRouter;
