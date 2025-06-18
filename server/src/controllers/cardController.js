@@ -1,4 +1,5 @@
 import cardModel from "../models/cardModel.js";
+import mongoose from "mongoose";
 
 const uploadCard = async (req, res) => {
   try {
@@ -34,7 +35,25 @@ const fetchCard = async (req, res) => {
   }
 }
 
+const updateCard = async (req, res) => {
+  try {
+    const cardId = req.params.id;
+    const {sareeName, sareePrice} = req.body;
+    if(!sareeName || !sareePrice){
+      return res.status(400).json({message: "sareeName, sareePrice are required"});
+    }
+
+    const card = await cardModel.findByIdAndUpdate(cardId, {sareeName, sareePrice}, {new: true})
+    res.json(card);
+    
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({message: "Internal Server Error"});
+  }
+}
+
 export {
   uploadCard,
-  fetchCard
+  fetchCard,
+  updateCard
 };
