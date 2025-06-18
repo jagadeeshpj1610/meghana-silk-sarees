@@ -31,7 +31,7 @@ const Sarees = () => {
                sarees.map((saree, index) => (
                     <div key={saree._id} className="sareeCard">
                         <img className="image" src={saree.sareePhoto.url} alt={`saree-${index + 1}`} />
-                        <SareeDetails sareesInfo = {saree} />
+                        <SareeDetails sareesInfo = {saree} setSarees={setSarees} />
                     </div>
 
                 ))

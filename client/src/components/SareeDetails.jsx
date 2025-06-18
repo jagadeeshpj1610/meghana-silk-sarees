@@ -1,9 +1,31 @@
 import '../css/sarees.css'
 import del from "../assets/delete.png"
 import el from "../assets/pen.png"
+import { useState } from 'react'
 
 
-const SareeDetails = ({ sareesInfo }) => {
+const SareeDetails = ({ sareesInfo, setSarees }) => {
+
+    const handleDelete = async () => {
+        try {
+            const response = await fetch(`http://localhost:8000/cards/${sareesInfo._id}`,{
+                method: 'DELETE',
+                credentials: 'include'
+            })
+
+            const data = await response.json()
+            if (response.ok) {
+                setSarees(prev => prev.filter(item => item._id !== sareesInfo._id))
+            } else{
+                console.log("failed to delete sarre or not updating ui");
+                
+            }
+        } catch (error) {
+            console.log("Eroor deleting Saree", error);
+            
+        }
+    }
+    
     return (
         <div className="sareeDetails">
             <div className='modesContent'>
@@ -13,7 +35,7 @@ const SareeDetails = ({ sareesInfo }) => {
                 </div>
                 <div>
                     <img className='edit' src={el} alt="" />
-                    <img  className='delete'  src={del} alt="" />
+                    <img  className='delete'  src={del} alt="" onClick={handleDelete} />
                 </div>
             </div>
             <div className='buyBtns'>
