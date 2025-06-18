@@ -63,8 +63,8 @@
 
 .sareesContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    /* gap: 20px; */
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
+    gap: 20px;
     padding: 25px;
     margin: 10px;
     justify-items: center;

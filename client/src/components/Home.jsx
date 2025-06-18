@@ -5,8 +5,8 @@ import Sarees from './Sarees';
 const Home = () => {
     return (
         <div className='homePage'>
-            <UploadSaree />
-            {/* <Sarees /> */}
+            {/* <UploadSaree /> */}
+            <Sarees />
          
         </div>
     );

@@ -18,6 +18,7 @@ const Sarees = () => {
             console.log("Upload failed:", error);
         }
     };
+    console.log(sarees)
 
     useEffect(() => {
         fetchSarees();
@@ -30,6 +31,7 @@ const Sarees = () => {
             ) :
                 sarees.map((saree, index) => (
                     <div key={saree._id} className="sareeCard">
+                        {console.log(saree)}
                         <img className="image" src={saree.sareePhoto.url} alt={`saree-${index + 1}`} />
                         <SareeDetails sareesInfo = {saree} />
                     </div>
