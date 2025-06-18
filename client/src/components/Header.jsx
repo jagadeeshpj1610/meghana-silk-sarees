@@ -1,19 +1,12 @@
 import React from 'react';
 import '../css/header.css';
+import Logout from './logout';
 import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const Header = ({ isLoggedIn, setIsLoggedIn }) => {
     const navigate = useNavigate();
-
-    const handleLogout = async () => {
-        await fetch("http://localhost:8000/auth/logout", {
-            method: "POST",
-            credentials: "include",
-        });
-        setIsLoggedIn(false);
-        navigate('/login');
-    };
-
+    const [showPopup, setShowPopup] = useState(false);
     return (
         <div className="headerDiv">
             <div>
@@ -29,7 +22,10 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
                 )}
 
                 {isLoggedIn && (
-                    <button className='logoutBtn' onClick={handleLogout}>Logout</button>
+                    <>
+                        <button className='logoutBtn' onClick={() => setShowPopup(true)}>Logout</button>
+                        <Logout showPopup={showPopup} setShowPopup={setShowPopup} />
+                    </>
                 )}
                 <Link to="/cart" className='cartBtn'>My 🛒</Link>
             </div>

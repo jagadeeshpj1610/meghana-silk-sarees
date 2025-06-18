@@ -1,0 +1,48 @@
+.popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popupBox {
+    background: white;
+
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.popupBox p {
+    font-size: 1rem;
+    padding: 5px;
+}
+
+.popupButtons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.yesBtn, .noBtn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.yesBtn {
+    background-color: #d9534f;
+    color: white;
+}
+
+.noBtn {
+    background-color: #5bc0de;
+    color: white;
+}
