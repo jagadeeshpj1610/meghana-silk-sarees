@@ -4,7 +4,7 @@ import el from "../assets/pen.png"
 import { useState } from 'react'
 
 
-const SareeDetails = ({ sareesInfo, setSarees }) => {
+const SareeDetails = ({ sareesInfo, setSarees, setToastMessage }) => {
 
     const handleDelete = async () => {
         try {
@@ -16,6 +16,7 @@ const SareeDetails = ({ sareesInfo, setSarees }) => {
             const data = await response.json()
             if (response.ok) {
                 setSarees(prev => prev.filter(item => item._id !== sareesInfo._id))
+                setToastMessage(data.message);
             } else{
                 console.log("failed to delete sarre or not updating ui");
                 

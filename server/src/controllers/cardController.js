@@ -64,7 +64,7 @@ const deleteCard = async (req, res) => {
       return res.status(400).json({ message: "This card is not found" });
     }
 
-    res.json({ deletedCard, message: "This card is deleted successfully" });
+    res.json({ deletedCard, message: "Saree is deleted successfully" });
 
   } catch (err) {
     console.log(err);
