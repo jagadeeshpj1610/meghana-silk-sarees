@@ -1,10 +1,10 @@
 import React from 'react';
 import Sarees from './Sarees';
 
-const Home = () => {
+const Home = ({isAdmin}) => {
     return (
         <div className='homePage'>
-            <Sarees />
+            <Sarees  isAdmin={isAdmin} />
         </div>
     );
 }

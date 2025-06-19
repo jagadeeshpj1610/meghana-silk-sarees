@@ -3,7 +3,7 @@ import '../css/sarees.css'
 import SareeDetails from "./SareeDetails";
 
 
-const Sarees = () => {
+const Sarees = ({isAdmin}) => {
     const [sarees, setSarees] = useState([]);
     const [toastMessage, setToastMessage] = useState("");
 
@@ -42,7 +42,7 @@ const Sarees = () => {
                     sarees.map((saree, index) => (
                         <div key={saree._id} className="sareeCard">
                             <img className="image" src={saree.sareePhoto.url} alt={`saree-${index + 1}`} />
-                            <SareeDetails sareesInfo={saree} setSarees={setSarees} setToastMessage={setToastMessage} />
+                            <SareeDetails sareesInfo={saree} setSarees={setSarees} setToastMessage={setToastMessage} isAdmin={isAdmin} />
                         </div>
 
                     ))
