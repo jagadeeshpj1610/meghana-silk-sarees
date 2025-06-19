@@ -4,7 +4,7 @@ import Logout from './logout';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-const Header = ({ isLoggedIn, setIsLoggedIn }) => {
+const Header = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
     const navigate = useNavigate();
     const [showPopup, setShowPopup] = useState(false);
     return (
@@ -13,7 +13,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
                 <Link to='/' className='linkHeading'><h1>Meghana Silk Sarees</h1></Link>
             </div>
             <div className="headerButtons">
-                <Link to='/addNewSaree' className='addNewSaree'>Add New Saree</Link>
+                {isAdmin && <Link to='/addNewSaree' className='addNewSaree'>Add New Saree</Link>}
                 {!isLoggedIn && (
                     <>
                         <Link to="/signup" className='signUpBtn'>Signup</Link>
@@ -24,10 +24,10 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
                 {isLoggedIn && (
                     <>
                         <button className='logoutBtn' onClick={() => setShowPopup(true)}>Logout</button>
-                        <Logout showPopup={showPopup} setShowPopup={setShowPopup} setIsLoggedIn={setIsLoggedIn} />
+                        <Logout showPopup={showPopup} setShowPopup={setShowPopup} setIsLoggedIn={setIsLoggedIn} setIsAdmin = {setIsAdmin}/>
                     </>
                 )}
-                <Link to="/cart" className='cartBtn'>My 🛒</Link>
+                {!isAdmin && <Link to="/cart" className='cartBtn'>My 🛒</Link>}
             </div>
         </div>
     );

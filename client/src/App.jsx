@@ -12,31 +12,50 @@ import UpdateSaree from './components/upload';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(null)
 
   useEffect(() => {
-    const fetchFunc = async () => {
-      const response = await fetch("http://localhost:8000/auth/isLoggedIn", {
-        credentials: "include"
-      });
-      const text = await response.json();
-      console.log(text);
-      
-      setIsLoggedIn(text.isLoggedIn);
+    const fetchStatus = async () => {
+      try {
+        const loginRes = await fetch("http://localhost:8000/auth/isLoggedIn", {
+          credentials: "include"
+        });
+        const loginData = await loginRes.json();
+        setIsLoggedIn(loginData.isLoggedIn);
+        console.log(loginData);
+
+
+        const adminRes = await fetch("http://localhost:8000/auth/isAdmin", {
+          credentials: "include"
+        });
+        const adminData = await adminRes.json();
+        console.log(adminData);
+
+        setIsAdmin(adminData.isAdmin);
+        if (res.ok) {
+          setIsLoggedIn(false);
+          setIsAdmin(false);
+        }
+      } catch (err) {
+        console.error("Error checking login/admin status", err);
+      }
     };
-    fetchFunc();
+
+    fetchStatus();
   }, []);
 
-  if (isLoggedIn === null) return <h1>Loading...</h1>;
+
+  if (isLoggedIn === null || isAdmin === null) return <h1 style={{ textAlign: 'center' }}>Loading...</h1>;
 
   return (
     <Router>
-      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
       <Routes>
-        <Route path="/" element={<Home />} />
-        {!isLoggedIn && <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />}
+        <Route path="/" element={<Home isAdmin={isAdmin} />} />
+        {!isLoggedIn && <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn}   setIsAdmin={setIsAdmin} />} />}
         {!isLoggedIn && <Route path="/signup" element={<Signup />} />}
         {/* <Route path="/cart" element={<Cart />} /> */}
-        <Route path='/addNewSaree' element = {<UpdateSaree /> } />
+        <Route path='/addNewSaree' element={<UpdateSaree />} />
       </Routes>
     </Router>
   );

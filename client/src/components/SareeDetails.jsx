@@ -5,7 +5,7 @@ import { useState } from 'react'
 import UpdateSaree from './upload'
 import Modal from './popup'
 
-const SareeDetails = ({ sareesInfo, setSarees, setToastMessage }) => {
+const SareeDetails = ({ sareesInfo, setSarees, setToastMessage, isAdmin }) => {
     const [isEditing, setIsEditing] = useState(false);
 
     const handleDelete = async () => {
@@ -41,22 +41,22 @@ const SareeDetails = ({ sareesInfo, setSarees, setToastMessage }) => {
                     />
                 </Modal>
             ) : (
-            <div className="sareeDetails">
-                <div className='modesContent'>
-                    <div>
-                        <p style={{ textAlign: "left" }}>Title : {sareesInfo.sareeName}</p>
-                        <p>Price : {sareesInfo.sareePrice}</p>
+                <div className="sareeDetails">
+                    <div className='modesContent'>
+                        <div>
+                            <p style={{ textAlign: "left" }}>Title : {sareesInfo.sareeName}</p>
+                            <p>Price : {sareesInfo.sareePrice}</p>
+                        </div>
+                        { isAdmin && <div>
+                            <img className='edit' src={el} alt="" onClick={() => setIsEditing(true)} />
+                            <img className='delete' src={del} alt="" onClick={handleDelete} />  
+                        </div>}
                     </div>
-                    <div>
-                        <img className='edit' src={el} alt="" onClick={() => setIsEditing(true)} />
-                        <img className='delete' src={del} alt="" onClick={handleDelete} />
+                    <div className='buyBtns'>
+                        <button>Add to Cart</button>
+                        <button>Buy</button>
                     </div>
                 </div>
-                <div className='buyBtns'>
-                    <button>Add to Cart</button>
-                    <button>Buy</button>
-                </div>
-            </div>
             )}
         </>
     );
