@@ -37,7 +37,6 @@ const SareeDetails = ({ sareesInfo, setSarees, setToastMessage }) => {
                         setIsEditing={setIsEditing}
                         onSuccess={() => {
                             setToastMessage("Saree updated successfully");
-                            setIsEditing(false);
                         }}
                     />
                 </Modal>

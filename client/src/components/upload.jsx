@@ -1,6 +1,7 @@
 
-import { useState,useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import '../css/addNewSaree.css'
+import { useNavigate } from 'react-router-dom';
 
 
 const UpdateSaree = ({ sareeInfo, isEditing, setIsEditing, onSuccess }) => {
@@ -10,6 +11,7 @@ const UpdateSaree = ({ sareeInfo, isEditing, setIsEditing, onSuccess }) => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const fileInput = useRef(null);
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (isEditing && sareeInfo) {
@@ -18,7 +20,8 @@ const UpdateSaree = ({ sareeInfo, isEditing, setIsEditing, onSuccess }) => {
     }
   }, [isEditing, sareeInfo]);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (!sareeName || !sareePrice || (!file && !isEditing)) {
       setMessage("All fields required");
       return;
@@ -46,20 +49,16 @@ const UpdateSaree = ({ sareeInfo, isEditing, setIsEditing, onSuccess }) => {
       const data = await res.json();
       if (res.ok) {
         setMessage(isEditing ? "Updated successfully" : "Uploaded successfully");
-        onSuccess && onSuccess(data.card);
-        if (isEditing) {
-          setTimeout(() => {
-            setMessage("");
-            setIsEditing(false);
-          }, 2000);
-        } else {
-          setFile(null);
-          setSareeName("");
-          setSareePrice("");
-          fileInput.current.value = null;
-        }
-      } else {
-        setMessage("Failed to submit form");
+
+        setFile(null);
+        setSareeName("");
+        setSareePrice("");
+        fileInput.current.value = null;
+        setTimeout(() => {
+          setMessage("");
+          setIsEditing(false);
+          onSuccess && onSuccess(data.card);
+        }, 3000);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -95,7 +94,7 @@ const UpdateSaree = ({ sareeInfo, isEditing, setIsEditing, onSuccess }) => {
       </button>
 
       {isEditing && (
-        <button onClick={() => setIsEditing(false)} style={{ marginTop: "10px", backgroundColor:'red', border:'none', padding:'12px', borderRadius:'10px', width:'100px', cursor:'pointer' }}>
+        <button onClick={() => setIsEditing(false)} style={{ marginTop: "10px", backgroundColor: 'red', border: 'none', padding: '12px', borderRadius: '10px', width: '100px', cursor: 'pointer' }}>
           Cancel
         </button>
       )}
