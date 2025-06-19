@@ -22,28 +22,27 @@ function App() {
         });
         const loginData = await loginRes.json();
         setIsLoggedIn(loginData.isLoggedIn);
-        console.log(loginData);
-
-
+        
+        
         const adminRes = await fetch("http://localhost:8000/auth/isAdmin", {
           credentials: "include"
         });
         const adminData = await adminRes.json();
         console.log(adminData);
-
+        
         setIsAdmin(adminData.isAdmin);
-        if (res.ok) {
-          setIsLoggedIn(false);
+        if (!adminRes.ok) {
           setIsAdmin(false);
         }
       } catch (err) {
         console.error("Error checking login/admin status", err);
       }
     };
-
+    
     fetchStatus();
-  }, []);
-
+  }, [isLoggedIn]);
+  
+  console.log(isLoggedIn, isAdmin);
 
   if (isLoggedIn === null || isAdmin === null) return <h1 style={{ textAlign: 'center' }}>Loading...</h1>;
 
