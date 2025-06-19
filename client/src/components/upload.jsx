@@ -53,7 +53,6 @@ const UpdateSaree = ({ sareeInfo, isEditing, setIsEditing, onSuccess }) => {
             setIsEditing(false);
           }, 2000);
         } else {
-          // clear form
           setFile(null);
           setSareeName("");
           setSareePrice("");
@@ -96,7 +95,7 @@ const UpdateSaree = ({ sareeInfo, isEditing, setIsEditing, onSuccess }) => {
       </button>
 
       {isEditing && (
-        <button onClick={() => setIsEditing(false)} style={{ marginTop: "10px" }}>
+        <button onClick={() => setIsEditing(false)} style={{ marginTop: "10px", backgroundColor:'red', border:'none', padding:'12px', borderRadius:'10px', width:'100px', cursor:'pointer' }}>
           Cancel
         </button>
       )}
