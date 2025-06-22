@@ -5,12 +5,19 @@ const cartSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
+    unique: true,
   },
-  card: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Card",
-    required: true,
-  }
+  cards: [
+    {
+      card: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Card",
+        required: true,
+        unique: true,
+      },
+      quantity: Number,
+    }
+  ]
 })
 
 const cartModel = mongoose.model("Cart", cartSchema);
