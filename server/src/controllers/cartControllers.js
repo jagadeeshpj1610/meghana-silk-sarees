@@ -23,7 +23,7 @@ const addToCart = async (req, res) => {
   }
 }
 
-const getAllCarts = async (req, res) => {
+const getCardsInCart = async (req, res) => {
   try {
     const fetchedCart = await cartModel.find({user: req.user.id}).populate("user").populate({
       path:"cards.card",
@@ -48,5 +48,5 @@ const removeCart = (req, res) => {
 export {
   addToCart,
   removeCart,
-  getAllCarts,
+  getCardsInCart,
 }
