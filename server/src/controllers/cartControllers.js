@@ -1,14 +1,15 @@
+import mongoose from "mongoose";
 import cartModel from "../models/cartModel.js";
 
 const addToCart = async (req, res) => {
-  try{
+  try {
     const card = req.body;
     const user = req.user.id;
 
-    const userExist = await cartModel.findOne({user})
+    const userExist = await cartModel.findOne({ user })
 
-    if(!userExist){
-      const postedCard = await cartModel.create({user, cards: [card]})
+    if (!userExist) {
+      const postedCard = await cartModel.create({ user, cards: [card] })
       return res.json(postedCard)
     }
 
@@ -17,16 +18,16 @@ const addToCart = async (req, res) => {
 
     res.json(userExist);
 
-  } catch(err){
+  } catch (err) {
     console.log(err);
-    res.status(400).json({message: "Internal server error"});
+    res.status(400).json({ message: "Internal server error" });
   }
 }
 
 const getCardsInCart = async (req, res) => {
   try {
-    const fetchedCart = await cartModel.find({user: req.user.id}).populate("user").populate({
-      path:"cards.card",
+    const fetchedCart = await cartModel.findOne({ user: req.user.id }).populate("user").populate({
+      path: "cards.card",
       populate: {
         path: "sareePhoto",
         model: "Photo"
@@ -36,17 +37,40 @@ const getCardsInCart = async (req, res) => {
     res.json(fetchedCart)
   } catch (err) {
     console.log(err);
-    res.status(400).json({message: "Internal server error"});
+    res.status(400).json({ message: "Internal server error" });
   }
 }
 
-const removeCart = (req, res) => {
+const removeACardFromCart = async (req, res) => {
+  try {
+    const { cardId } = req.body;
+    const user = req.user.id;
+    console.log(user, cardId)
+    const cardIdObject = new mongoose.Types.ObjectId(cardId)
 
+    const afterDeletedCart = await cartModel.findOneAndUpdate({user},
+      {
+        $pull: {
+          cards: {
+            card: cardIdObject
+          }
+        },
+      }, { new: true },
+    )
+    if (!afterDeletedCart) {
+      return res.status(400).json({ message: "Not found" })
+    }
+    res.json(afterDeletedCart)
+
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ message: "Internal server error" });
+  }
 }
 
 
 export {
   addToCart,
-  removeCart,
+  removeACardFromCart,
   getCardsInCart,
 }
