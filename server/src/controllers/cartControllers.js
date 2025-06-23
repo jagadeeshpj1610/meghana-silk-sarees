@@ -1,4 +1,3 @@
-import cardModel from "../models/cardModel.js";
 import cartModel from "../models/cartModel.js";
 
 const addToCart = async (req, res) => {
@@ -26,7 +25,7 @@ const addToCart = async (req, res) => {
 
 const getAllCarts = async (req, res) => {
   try {
-    const fetchedCart = await cartModel.find({user: req.user.id})
+    const fetchedCart = await cartModel.find({user: req.user.id}).populate("user")
     // const fetchedPhoto = await cardModel.find({id: })
     res.json(fetchedCart)
   } catch (err) {

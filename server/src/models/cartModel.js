@@ -13,7 +13,7 @@ const cartSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Card",
         required: true,
-        unique: true,
+        unique: false,
       },
       quantity: Number,
     }
