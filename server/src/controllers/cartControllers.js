@@ -1,19 +1,23 @@
+import cardModel from "../models/cardModel.js";
 import cartModel from "../models/cartModel.js";
 
 const addToCart = async (req, res) => {
   try{
-    const {card} = req.body;
+    const card = req.body;
     const user = req.user.id;
-    // const found = await cartModel.find({card, user});
-    // if(found){
 
-    // }
-    if(found){
-      return res.status(400).json({message: "You already added this to cart"});
+    const userExist = await cartModel.findOne({user})
+
+    if(!userExist){
+      const postedCard = await cartModel.create({user, cards: [card]})
+      return res.json(postedCard)
     }
-    const addedSaree = await cartModel.create({card, user})
-    
-    res.json({addedSaree, message: "added successfully"})
+
+    userExist.cards.push(card);
+    userExist.save();
+
+    res.json(userExist);
+
   } catch(err){
     console.log(err);
     res.status(400).json({message: "Internal server error"});
@@ -22,12 +26,13 @@ const addToCart = async (req, res) => {
 
 const getAllCarts = async (req, res) => {
   try {
-    
+    const fetchedCart = await cartModel.find({user: req.user.id})
+    // const fetchedPhoto = await cardModel.find({id: })
+    res.json(fetchedCart)
   } catch (err) {
     console.log(err);
     res.status(400).json({message: "Internal server error"});
   }
-  res.json({message: "cart router"})
 }
 
 const removeCart = (req, res) => {
