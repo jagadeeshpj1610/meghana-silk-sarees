@@ -12,7 +12,6 @@ const cardSchema = mongoose.Schema({
   sareePhoto: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Photo",
-    // type: String,
     required: true,
   }
 })
