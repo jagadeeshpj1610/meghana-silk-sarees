@@ -25,7 +25,13 @@ const addToCart = async (req, res) => {
 
 const getAllCarts = async (req, res) => {
   try {
-    const fetchedCart = await cartModel.find({user: req.user.id}).populate("user")
+    const fetchedCart = await cartModel.find({user: req.user.id}).populate("user").populate({
+      path:"cards.card",
+      populate: {
+        path: "sareePhoto",
+        model: "Photo"
+      }
+    })
     // const fetchedPhoto = await cardModel.find({id: })
     res.json(fetchedCart)
   } catch (err) {
