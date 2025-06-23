@@ -6,15 +6,19 @@ const addToCart = async (req, res) => {
     const card = req.body;
     const user = req.user.id;
 
+    const ObjectIdCard = new mongoose.Types.ObjectId(card.card)
     const userExist = await cartModel.findOne({ user })
 
     if (!userExist) {
-      const postedCard = await cartModel.create({ user, cards: [card] })
+      const postedCard = await cartModel.create({ user, cards: [{ cardId, quantity: 1 }] })
       return res.json(postedCard)
     }
-
-    userExist.cards.push(card);
-    userExist.save();
+    const isElementExist = userExist.cards.findIndex((element) => element.card.equals(ObjectIdCard))
+    if (isElementExist === -1) {
+      return res.status(400).json({ message: "no card is found" })
+    }
+    userExist.cards[isElementExist].quantity+= 1;
+    await userExist.save();
 
     res.json(userExist);
 
@@ -48,7 +52,7 @@ const removeACardFromCart = async (req, res) => {
     console.log(user, cardId)
     const cardIdObject = new mongoose.Types.ObjectId(cardId)
 
-    const afterDeletedCart = await cartModel.findOneAndUpdate({user},
+    const afterDeletedCart = await cartModel.findOneAndUpdate({ user },
       {
         $pull: {
           cards: {
