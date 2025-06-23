@@ -12,7 +12,7 @@ const cartSchema = mongoose.Schema({
       card: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Card",
-        required: true,
+        required: [true, "This is required"],
         unique: false,
       },
       quantity: Number,

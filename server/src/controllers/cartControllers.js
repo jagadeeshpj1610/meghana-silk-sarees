@@ -3,21 +3,23 @@ import cartModel from "../models/cartModel.js";
 
 const addToCart = async (req, res) => {
   try {
-    const card = req.body;
+    const { cardId } = req.body;
     const user = req.user.id;
 
-    const ObjectIdCard = new mongoose.Types.ObjectId(card.card)
+    const ObjectIdCard = new mongoose.Types.ObjectId(cardId)
     const userExist = await cartModel.findOne({ user })
 
     if (!userExist) {
-      const postedCard = await cartModel.create({ user, cards: [{ cardId, quantity: 1 }] })
+      const postedCard = await cartModel.create({ user, cards: [{ card: cardId, quantity: 1 }] })
       return res.json(postedCard)
     }
     const isElementExist = userExist.cards.findIndex((element) => element.card.equals(ObjectIdCard))
     if (isElementExist === -1) {
-      return res.status(400).json({ message: "no card is found" })
+      userExist.cards.push({ card: cardId, quantity: 1 })
+      userExist.save();
+      return res.status(400).json({ userExist,message: "new card is created successfully" })
     }
-    userExist.cards[isElementExist].quantity+= 1;
+    userExist.cards[isElementExist].quantity += 1;
     await userExist.save();
 
     res.json(userExist);
