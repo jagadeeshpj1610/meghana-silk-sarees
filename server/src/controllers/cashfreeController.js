@@ -6,7 +6,7 @@ dotenv.config();
 
 const createOrder = async (req, res) => {
   try {
-    const {orderId, amount} = req.body;
+    const { orderId, amount } = req.body;
     const customer = {
       id: req.user.id,
       name: req.user.name,
@@ -14,38 +14,45 @@ const createOrder = async (req, res) => {
       phone: req.user.phone
     }
     const response = await createCashfreeOrder(orderId, amount, customer);
-    const userExist = await transactionModel.findOne({user: req.user.id});
-    if(!userExist){
-      const createdDocument = transactionModel.create({user: req.user.id, orders: [{orderId}]});
+    const userExist = await transactionModel.findOne({ user: req.user.id });
+    if (!userExist) {
+      const createdDocument = transactionModel.create({ user: req.user.id, orders: [{ orderId }] });
       return res.json(createdDocument);
     }
-    userExist.orders.push({orderId: response.order_id});
+    userExist.orders.push({ orderId: response.order_id });
     userExist.save();
-    console.log(response)
     res.json(response)
   } catch (err) {
     console.log(err);
-    res.json({message: "Internal Server Error"})
+    res.json({ message: "Internal Server Error" })
   }
 };
 
-const verifyPayment = async (req, res) => {
-  const {orderId} = req.params;
-  if(!orderId){
-    return res.status(400).json({message: "OrderId is required"});
-  }
-  const response = await fetch(`https://sandbox.cashfree.com/pg/orders/${orderId}/payments`, {
-    headers: {
-      'x-client-id': process.env.CASHFREE_APP_ID,
-      'x-client-secret': process.env.CASHFREE_SECRET_KEY,
-      'x-api-version': "2022-09-01"
+const paymentDetails = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    if (!orderId) {
+      return res.status(404).json({ message: "OrderId is required" });
     }
-  });
-  const data = await response.json();
-  res.json(data[0].payment_status);
+    const response = await fetch(`https://sandbox.cashfree.com/pg/orders/${orderId}/payments`, {
+      headers: {
+        'x-client-id': process.env.CASHFREE_APP_ID,
+        'x-client-secret': process.env.CASHFREE_SECRET_KEY,
+        'x-api-version': "2022-09-01"
+      }
+    });
+    const data = await response.json();
+    if (data.length) {
+      return res.json({ message: "This transaction is not found" });
+    }
+    res.json(data[0]);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({message: "Internal Server Error"});
+  }
 }
 
 export {
   createOrder,
-  verifyPayment
+  paymentDetails
 }
