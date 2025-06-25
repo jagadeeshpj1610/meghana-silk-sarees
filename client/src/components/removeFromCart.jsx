@@ -1,21 +1,25 @@
+import { useState } from "react";
 
 
-const RemoveFromCart = ({ cards }) => {
+const RemoveFromCart = ({ cardId, toRemove }) => {
 
     const removeFromCart = async () => {
+ 
         try {
-            // const response = await fetch('http://localhost:8000/cart', {
-            //     method: 'DELETE',
-            //     credentials: 'include',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify({ cardId : cards.card._id })
-            // })
-            console.log(cards);
+            const response = await fetch('http://localhost:8000/cart', {
+                method: 'DELETE',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ cardId })
+            })
             
-            // const data = await response.json()
-            // console.log(data);
+            const data = await response.json()
+            console.log(data);
+            if (response.ok) {
+                toRemove()
+            }
 
         } catch (error) {
             console.log('failed to product is remove from cart', error);

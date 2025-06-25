@@ -24,6 +24,10 @@ const CartPage = () => {
         fetchCart();
     }, []);
 
+    const handleRemove = (id) => {
+        setCards(prev => prev.filter(item => item.card._id != id))
+    }
+
     if (!data) return <p>Loading cart...</p>;
 
     return (
@@ -39,7 +43,7 @@ const CartPage = () => {
                             <p><strong>Saree Quantity:</strong>{item.quantity}</p>
                             <p><strong>Saree Price:</strong>{item.card.sareePrice}</p>
                             <div>
-                                <RemoveFromCart cards={cards} />
+                                <RemoveFromCart cardId={item.card._id} toRemove = {() => handleRemove(item.card._id)} />
                                 <BuyButton />
                             </div>
                         </div>

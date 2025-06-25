@@ -22,7 +22,7 @@ const addToCart = async (req, res) => {
     if (isElementExist === -1) {
       userExist.cards.push({ card: cardId, quantity: 1 })
       await userExist.save();
-      return res.status(400).json({ userExist, message: "new card is created successfully" })
+      return res.status(201).json({ userExist, message: "new card is created successfully" })
     }
     userExist.cards[isElementExist].quantity += 1;
     await userExist.save();
