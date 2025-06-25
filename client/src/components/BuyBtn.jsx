@@ -2,11 +2,10 @@ import '../css/sarees.css'
 
 const BuyButton = ({ sareeInfo }) => {
     const handleClickOnBuy = async () => {
-        // if (!window.Cashfree || typeof window.Cashfree.checkout !== "function") {
-        //     alert("Cashfree SDK not loaded yet!");
-        //     return;
-        // }
-        // console.log(sareeInfo)
+        if (!window.Cashfree || typeof window.Cashfree.checkout !== "function") {
+            alert("You're offline or Something went wrong");
+            return;
+        }
         const orderDetails = {
             orderId: `${sareeInfo._id}-${Date.now()}`,
             amount: sareeInfo.sareePrice,
