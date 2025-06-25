@@ -8,6 +8,7 @@ const SignUp = () => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [phone, setPhone] = useState("")
     const [message, setMessage] = useState("");
     const navigate = useNavigate();
 
@@ -46,6 +47,8 @@ const SignUp = () => {
                 <div className="formDiv">
                     <label htmlFor="name">Name:</label>
                     <input type="text" className="name" required autoComplete="off" onChange={(e) => setName(e.target.value)} />
+                    <label htmlFor="phone">Phone:</label>
+                    <input type="text" className="name" required autoComplete="off" onChange={(e) => setPhone(e.target.value)} />
                     <label htmlFor="email">Email:</label>
                     <input type="email" className="email" required autoComplete="off" onChange={(e) => setEmail(e.target.value)} />
                     <label htmlFor="password">Password:</label>

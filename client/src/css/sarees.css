@@ -50,7 +50,7 @@
     flex-wrap: wrap;
 }
 
-.buyBtns button {
+.buybtnn {
     font-size: 12px;
     padding: 4px 8px;
     border: none;
@@ -62,7 +62,7 @@
     cursor: pointer;
 }
 
-.buyBtns button:hover {
+.buybtnn button:hover {
     background-color:#ff9999;
 }
 

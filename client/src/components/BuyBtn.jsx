@@ -1,4 +1,4 @@
-
+import '../css/sarees.css'
 
 const BuyButton = ({ sareeInfo }) => {
     const handleClickOnBuy = async () => {
@@ -36,7 +36,7 @@ const BuyButton = ({ sareeInfo }) => {
 
 
     return (
-        <button onClick={handleClickOnBuy}>Buy</button>
+        <button className='buybtnn' onClick={handleClickOnBuy}>Buy</button>
     )
 }
 

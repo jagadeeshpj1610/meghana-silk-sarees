@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import '../css/sarees.css'
 
 const RemoveFromCart = ({ cardId, toRemove }) => {
 
@@ -28,7 +28,7 @@ const RemoveFromCart = ({ cardId, toRemove }) => {
     }
 
     return (
-        <button onClick={removeFromCart}>Remove From Cart</button>
+        <button className = 'buybtnn' onClick={removeFromCart}>Remove From Cart</button>
     )
 }
 
