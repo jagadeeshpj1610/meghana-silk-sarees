@@ -57,6 +57,21 @@
   font-size: 16px;
 }
 
+.message {
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.message.error {
+  color: red;
+}
+
+.message.success {
+  color: green;
+}
+
+
 .loginButtonDiv button:hover {
   background-color: skyblue;
 }

@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-const Login = ({ setIsLoggedIn,setIsAdmin }) => {
+const Login = ({ setIsLoggedIn, setIsAdmin }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [message, setMessage] = useState("");
+    const [message, setMessage] = useState({ text: "", type: "" });
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
@@ -30,7 +30,7 @@ const Login = ({ setIsLoggedIn,setIsAdmin }) => {
                 navigate('/');
 
             } else {
-                setMessage("Type correct email and password")
+                setMessage({ text: "Enter valid email and password", type: "error" });
                 console.error("Login failed:", response.statusText);
             }
         } catch (error) {
@@ -50,7 +50,11 @@ const Login = ({ setIsLoggedIn,setIsAdmin }) => {
                     <label htmlFor="password">Password:</label>
                     <input type="password" className="password" required autoComplete="new-password" onChange={(e) => setPassword(e.target.value)} />
                 </div>
-                <div className={`message ${message && 'visible'}`}>{message}</div>
+                {message.text && (
+                    <div className={`message ${message.type}`}>
+                        {message.text}
+                    </div>
+                )}
                 <div className="loginButtonDiv">
                     <button type="submit">Login</button>
                 </div>
