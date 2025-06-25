@@ -2,8 +2,8 @@ import '../css/sarees.css'
 
 const BuyButton = ({ sareeInfo }) => {
     const handleClickOnBuy = async () => {
-        if (!window.Cashfree || typeof window.Cashfree.checkout !== "function") {
-            alert("You're offline or Something went wrong");
+        if (!navigator.onLine) {
+            alert("You're offline");
             return;
         }
         const orderDetails = {
@@ -22,14 +22,14 @@ const BuyButton = ({ sareeInfo }) => {
         console.log(data)
 
         const cashfree = new window.Cashfree({
-            mode: "sandbox", //or production
+            mode: "sandbox",
         })
 
         cashfree.checkout({
             paymentSessionId: data.payment_session_id,
             redirectTarget: "_self",
             returnUrl: "http://localhost:5173/",
-        });
+        }).then((result)=> console.log(result))
 
     }
 
