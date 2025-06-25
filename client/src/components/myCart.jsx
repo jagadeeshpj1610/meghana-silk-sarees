@@ -12,6 +12,7 @@ const CartPage = () => {
                 credentials: "include",
             });
             const data = await res.json();
+            console.log(data);
         };
         fetchCart();
     }, []);
