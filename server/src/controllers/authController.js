@@ -25,6 +25,7 @@ const login = async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
+      phone: user.phone,
     }, process.env.JWT_SECRET_KEY, { expiresIn: '1d' });
 
     res.cookie("token", token, {

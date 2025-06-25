@@ -10,7 +10,8 @@ const authMiddleware = (req, res, next) => {
       return res.status(401).json({ message: "You are not authenticated. Please Login" });
     }
     const user = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    req.user = { id: user.id, name: user.name, email: user.email, role: user.role };
+    req.user = { id: user.id, name: user.name, email: user.email, role: user.role, phone: user.phone };
+    console.log(user)
     next();
   } catch (err) {
     console.log(err);
