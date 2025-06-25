@@ -45,7 +45,7 @@ const updateCard = async (req, res) => {
       sareeName,
       sareePrice,
     };
-    if (res.uploadedPhoto.id) {
+    if (res.uploadedPhoto && res.uploadedPhoto.id) {
       updateFields.sareePhoto = res.uploadedPhoto.id;
     }
     if (!sareeName || !sareePrice) {
