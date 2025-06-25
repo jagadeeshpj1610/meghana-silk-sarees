@@ -41,7 +41,7 @@ const AddToCart = ({ sareeInfo }) => {
                 </div>
             )}
 
-            <button onClick={addToCartFunction}>Add To Cart</button>
+            <button className="addToCartBtn" onClick={addToCartFunction}>Add To Cart</button>
         </>
     )
 }
