@@ -69,8 +69,8 @@ const SareeDetails = ({ sareesInfo, setSarees, setToastMessage, isAdmin }) => {
                         </div>}
                     </div>
                     <div className='buyBtns'>
-                        <AddToCart sareeInfo={sareesInfo} />
-                        <BuyButton sareeInfo={sareesInfo} />
+                        {!isAdmin && <AddToCart sareeInfo={sareesInfo} />}
+                        {!isAdmin && <BuyButton sareeInfo={sareesInfo} />}
                     </div>
                 </div>
             )}
