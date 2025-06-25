@@ -6,6 +6,8 @@
   border-radius: 12px;
   background-color: #fefefe;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 75vh;
+  overflow-y: auto;
 }
 
 .headingNewSaree {
@@ -48,8 +50,8 @@
   background-color: skyblue;
 }
 
-.uploadBtn:disabled{
-    cursor: not-allowed;
-    background-color: #d9534f;
-    opacity: 0.7;
+.uploadBtn:disabled {
+  cursor: not-allowed;
+  background-color: #d9534f;
+  opacity: 0.7;
 }
