@@ -31,6 +31,9 @@ const createOrder = async (req, res) => {
 
 const verifyPayment = async (req, res) => {
   const {orderId} = req.params;
+  if(!orderId){
+    return res.status(400).json({message: "OrderId is required"});
+  }
   const response = await fetch(`https://sandbox.cashfree.com/pg/orders/${orderId}/payments`, {
     headers: {
       'x-client-id': process.env.CASHFREE_APP_ID,
