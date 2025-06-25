@@ -1,0 +1,83 @@
+.mainContainer {
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+.cart {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.cardsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.productContainer {
+    display: flex;
+    align-items: center;
+    background: #f9f9f9;
+    align-items: center;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    gap: 24px;
+    width: 60%;
+    height: 300px;
+}
+
+.sareeImage {
+    width: 380px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.productDetails {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.sareeName,
+.sareeDescription,
+.sareePrice,
+.quantity {
+    margin: 6px 0;
+    font-size: 1rem;
+    padding: 3px;
+}
+
+.buyCartBtns {
+    display: flex;
+    gap: 17px;
+    margin-top: 14px;
+}
+
+.loading{
+    padding: 15px;
+    margin-top: 20px;
+    text-align: center;
+    font: 600;
+    font-size: 1rem;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 180px;
+    height: 40px;
+}
+
+button:hover {
+    background-color: red;
+}

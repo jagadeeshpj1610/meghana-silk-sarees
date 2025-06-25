@@ -1,5 +1,4 @@
-
-
+import '../css/mycart.css'
 
 import { useEffect, useState } from 'react';
 import BuyButton from './BuyBtn';
@@ -17,7 +16,6 @@ const CartPage = () => {
                 credentials: "include",
             });
             const data = await res.json();
-            // console.log(data);
             setCards(data.cards)
             setData(data)
         };
@@ -28,23 +26,29 @@ const CartPage = () => {
         setCards(prev => prev.filter(item => item.card._id != id))
     }
 
-    if (!data) return <p>Loading cart...</p>;
+    if (!data) return <p className='loading'>Loading cart...</p>;
 
     return (
-        <div>
-            <h2>Your Cart</h2>
+        <div className='mainContainer'>
+            <h2 className='cart'>My Cart</h2>
 
             {cards && cards.length > 0 ? (
-                <div>
+                <div className='cardsContainer'>
                     {cards.map((item, index) => (
-                        <div key={index}>
-                            <img src={item.card.sareePhoto.url} alt="" />
-                            <p><strong>Name:</strong> {item.card.sareeName}</p>
-                            <p><strong>Saree Quantity:</strong>{item.quantity}</p>
-                            <p><strong>Saree Price:</strong>{item.card.sareePrice}</p>
-                            <div>
-                                <RemoveFromCart cardId={item.card._id} toRemove = {() => handleRemove(item.card._id)} />
-                                <BuyButton />
+                        <div key={index} className='productContainer'>
+                            <img src={item.card.sareePhoto.url} alt="" className='sareeImage' />
+
+                            <div className='productDetails'>
+                                <p className='sareeName'><strong>Name:</strong> {item.card.sareeName}</p>
+                                <p className='quantity'><strong>Quantity:</strong> {item.quantity}</p>
+                                <p className='sareePrice'><strong>Price:</strong> ₹{item.card.sareePrice}</p>
+                                <p className='sareeDescription'><strong>Description:</strong>Yadiki Silk Saree – A perfect blend of tradition and elegance, crafted with rich silk and fine detailing.
+Ideal for festive occasions, it adds timeless grace and charm to your look.</p>
+
+                                <div className='buyCartBtns'>
+                                    <BuyButton />
+                                    <RemoveFromCart cardId={item.card._id} toRemove={() => handleRemove(item.card._id)} />
+                                </div>
                             </div>
                         </div>
                     ))}
