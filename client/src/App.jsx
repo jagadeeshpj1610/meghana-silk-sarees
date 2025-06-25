@@ -2,7 +2,7 @@ import React from 'react';
 import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/SignUp';
-// import Cart from './components/Cart';
+import CartPage from './components/myCart';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
@@ -53,7 +53,7 @@ function App() {
         <Route path="/" element={<Home isAdmin={isAdmin} />} />
         {!isLoggedIn && <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn}   setIsAdmin={setIsAdmin} />} />}
         {!isLoggedIn && <Route path="/signup" element={<Signup />} />}
-        {/* <Route path="/cart" element={<Cart />} /> */}
+        <Route path="/cart" element={<CartPage />} />
         <Route path='/addNewSaree' element={<UpdateSaree />} />
       </Routes>
     </Router>

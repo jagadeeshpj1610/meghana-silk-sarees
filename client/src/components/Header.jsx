@@ -3,6 +3,7 @@ import '../css/header.css';
 import Logout from './logout';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import CartButton from './cartButton';
 
 const Header = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
     const navigate = useNavigate();
@@ -27,7 +28,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
                         <Logout showPopup={showPopup} setShowPopup={setShowPopup} setIsLoggedIn={setIsLoggedIn} setIsAdmin = {setIsAdmin}/>
                     </>
                 )}
-                {!isAdmin && <Link to="/cart" className='cartBtn'>My 🛒</Link>}
+                <CartButton isAdmin={isAdmin} />
             </div>
         </div>
     );
