@@ -1,5 +1,7 @@
 import express from "express"
-import { createOrder } from "../controllers/cashfreeController";
+import { createOrder } from "../controllers/cashfreeController.js";
 const cashfreeRouter = express.Router();
 
-cashfreeRouter.post("/payment", createOrder)
+cashfreeRouter.post("/", createOrder)
+
+export default cashfreeRouter
