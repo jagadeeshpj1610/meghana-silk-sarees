@@ -5,6 +5,7 @@ import { useState } from 'react'
 import UpdateSaree from './upload'
 import Modal from './popup'
 import AddToCart from './AddToCart'
+import BuyButton from './BuyBtn'
 
 const SareeDetails = ({ sareesInfo, setSarees, setToastMessage, isAdmin }) => {
     const [isEditing, setIsEditing] = useState(false);
@@ -55,7 +56,7 @@ const SareeDetails = ({ sareesInfo, setSarees, setToastMessage, isAdmin }) => {
                     </div>
                     <div className='buyBtns'>
                         <AddToCart sareeInfo = {sareesInfo} />
-                        <button>Buy</button>
+                        <BuyButton />
                     </div>
                 </div>
             )}
