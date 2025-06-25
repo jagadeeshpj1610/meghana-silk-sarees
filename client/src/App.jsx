@@ -35,7 +35,7 @@ function App() {
           setIsAdmin(false);
         }
       } catch (err) {
-        console.error("Error checking login/admin status", err);
+        console.log("Error checking login/admin status", err);
       }
     };
     

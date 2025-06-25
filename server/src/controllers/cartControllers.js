@@ -14,15 +14,15 @@ const addToCart = async (req, res) => {
       return res.json(postedCard)
     }
     await cartModel.updateOne(
-  { user: req.user.id },
-  { $pull: { cards: { card: null } } }
-);
+      { user: req.user.id },
+      { $pull: { cards: { card: null } } }
+    );
 
     const isElementExist = userExist.cards.findIndex((element) => element.card.equals(ObjectIdCard))
     if (isElementExist === -1) {
       userExist.cards.push({ card: cardId, quantity: 1 })
-      userExist.save();
-      return res.status(400).json({ userExist,message: "new card is created successfully" })
+      await userExist.save();
+      return res.status(400).json({ userExist, message: "new card is created successfully" })
     }
     userExist.cards[isElementExist].quantity += 1;
     await userExist.save();

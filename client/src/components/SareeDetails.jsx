@@ -4,6 +4,7 @@ import el from "../assets/pen.png"
 import { useState } from 'react'
 import UpdateSaree from './upload'
 import Modal from './popup'
+import AddToCart from './AddToCart'
 
 const SareeDetails = ({ sareesInfo, setSarees, setToastMessage, isAdmin }) => {
     const [isEditing, setIsEditing] = useState(false);
@@ -53,7 +54,7 @@ const SareeDetails = ({ sareesInfo, setSarees, setToastMessage, isAdmin }) => {
                         </div>}
                     </div>
                     <div className='buyBtns'>
-                        <button>Add to Cart</button>
+                        <AddToCart sareeInfo = {sareesInfo} />
                         <button>Buy</button>
                     </div>
                 </div>
