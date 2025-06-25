@@ -4,6 +4,6 @@ import { authMiddleware } from "../middlewares/authMiddleware.js";
 const cashfreeRouter = express.Router();
 
 cashfreeRouter.post("/create-order",authMiddleware, createOrder);
-cashfreeRouter.get("/payment-details/:orderId", verifyPayment);
+cashfreeRouter.get("/payment-details/:orderId",authMiddleware, verifyPayment);
 
 export default cashfreeRouter
