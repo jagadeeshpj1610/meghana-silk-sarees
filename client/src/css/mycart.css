@@ -68,7 +68,7 @@
     font-size: 1rem;
 }
 
-button {
+.buyBtnn {
     padding: 8px 16px;
     background-color: black;
     color: white;
@@ -79,6 +79,6 @@ button {
     height: 40px;
 }
 
-button:hover {
+.buyBtnn:hover {
     background-color:#ff9999;
 }

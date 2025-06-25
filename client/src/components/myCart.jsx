@@ -43,7 +43,7 @@ const CartPage = () => {
                                 <p className='quantity'><strong>Quantity:</strong> {item.quantity}</p>
                                 <p className='sareePrice'><strong>Price:</strong> ₹{item.card.sareePrice}</p>
                                 <p className='sareeDescription'><strong>Description:</strong>Yadiki Silk Saree – A perfect blend of tradition and elegance, crafted with rich silk and fine detailing.
-Ideal for festive occasions, it adds timeless grace and charm to your look.</p>
+                                    Ideal for festive occasions, it adds timeless grace and charm to your look.</p>
 
                                 <div className='buyCartBtns'>
                                     <BuyButton />

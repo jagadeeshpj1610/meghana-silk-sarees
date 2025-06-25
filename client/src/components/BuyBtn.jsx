@@ -1,8 +1,8 @@
-
+import '../css/mycart.css'
 
 const BuyButton = () => {
     return(
-        <button>Buy</button>
+        <button className="butBtnn">Buy</button>
     )
 }
 
