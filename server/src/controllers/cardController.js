@@ -51,7 +51,7 @@ const updateCard = async (req, res) => {
     if (!sareeName || !sareePrice) {
       return res.status(400).json({ message: "sareeName, sareePrice are required" });
     }
-    const card = await cardModel.findByIdAndUpdate(cardId, updateFields, { new: true })
+    const card = await cardModel.findByIdAndUpdate(cardId, updateFields, { new: true }).populate("sareePhoto");
     if (!card) {
       return res.status(400).json({ message: "This card is not found" })
     }
