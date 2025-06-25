@@ -16,7 +16,7 @@ const createOrder = async (req, res) => {
     const response = await createCashfreeOrder(orderId, amount, customer);
     const userExist = await transactionModel.findOne({user: req.user.id});
     if(!userExist){
-      const createdDocument = transactionModel.create({user: req.user.id, orders: [{orderId: response.order_id}]});
+      const createdDocument = transactionModel.create({user: req.user.id, orders: [{orderId}]});
       return res.json(createdDocument);
     }
     userExist.orders.push({orderId: response.order_id});
@@ -39,7 +39,7 @@ const verifyPayment = async (req, res) => {
     }
   });
   const data = await response.json();
-  res.json(data)
+  res.json(data[0].payment_status);
 }
 
 export {
