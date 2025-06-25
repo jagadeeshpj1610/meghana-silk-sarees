@@ -47,7 +47,7 @@ const SareeDetails = ({ sareesInfo, setSarees, setToastMessage, isAdmin }) => {
                     <div className='modesContent'>
                         <div>
                             <p style={{ textAlign: "left" }}>Title : {sareesInfo.sareeName}</p>
-                            <p>Price : {sareesInfo.sareePrice}</p>
+                            <p>Price : ₹{sareesInfo.sareePrice}</p>
                         </div>
                         { isAdmin && <div>
                             <img className='edit' src={el} alt="" onClick={() => setIsEditing(true)} />

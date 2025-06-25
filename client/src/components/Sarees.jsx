@@ -3,9 +3,11 @@ import '../css/sarees.css'
 import SareeDetails from "./SareeDetails";
 
 
+
 const Sarees = ({isAdmin}) => {
     const [sarees, setSarees] = useState([]);
     const [toastMessage, setToastMessage] = useState("");
+    const [data, setData] = useState(null)
 
     const fetchSarees = async () => {
         try {
@@ -15,6 +17,7 @@ const Sarees = ({isAdmin}) => {
             });
             const data = await res.json();
             setSarees(data.cards)
+            setData(data)
         } catch (error) {
             console.log("Upload failed:", error);
         }
@@ -31,6 +34,8 @@ const Sarees = ({isAdmin}) => {
             return () => clearTimeout(timer);
         }
     }, [toastMessage]);
+
+    if(!data) return <p style={{textAlign:'center', padding:'5px', fontSize:'1rem'}}>Sarees Loading...</p>
 
     return (
         <>
