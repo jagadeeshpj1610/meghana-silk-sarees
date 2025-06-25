@@ -58,7 +58,8 @@ const UpdateSaree = ({ sareeInfo, isEditing, setIsEditing, onSuccess }) => {
           setMessage("");
           setIsEditing(false);
           onSuccess && onSuccess(data.card);
-        }, 3000);
+
+        }, 4000);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -85,6 +86,17 @@ const UpdateSaree = ({ sareeInfo, isEditing, setIsEditing, onSuccess }) => {
         value={sareePrice}
         onChange={(e) => setSareePrice(e.target.value)}
       />
+
+      {isEditing && sareeInfo?.sareePhoto && (
+        <div style={{ margin: "10px 0" }}>
+          <p><strong>Current Image:</strong></p>
+          <img
+            src={sareeInfo.sareePhoto.url}
+            alt="Existing Saree"
+            style={{ width: "200px", height: "auto", borderRadius: "10px" }}
+          />
+        </div>
+      )}
 
       <label>{isEditing ? "Change Image (optional):" : "Upload Image:"}</label>
       <input type="file" accept="image/*" ref={fileInput} onChange={(e) => setFile(e.target.files[0])} />

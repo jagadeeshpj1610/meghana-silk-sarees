@@ -29,6 +29,17 @@ const SareeDetails = ({ sareesInfo, setSarees, setToastMessage, isAdmin }) => {
         }
     };
 
+    const handleUpdate = (updatedCard) => {
+        // console.log(updatedCard);
+
+        setSarees(prev =>
+            prev.map(card =>
+                card._id === updatedCard._id ? updatedCard : card
+            )
+        );
+    };
+
+
     return (
         <>
             {isEditing ? (
@@ -37,8 +48,11 @@ const SareeDetails = ({ sareesInfo, setSarees, setToastMessage, isAdmin }) => {
                         sareeInfo={sareesInfo}
                         isEditing={isEditing}
                         setIsEditing={setIsEditing}
-                        onSuccess={() => {
+                        onSuccess={(updatedCard) => {
+                            // setTimeout(() => {
+                            handleUpdate(updatedCard);
                             setToastMessage("Saree updated successfully");
+                            // }, 4000);
                         }}
                     />
                 </Modal>
