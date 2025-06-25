@@ -42,7 +42,7 @@ const paymentDetails = async (req, res) => {
       }
     });
     const data = await response.json();
-    if (data.length) {
+    if(!data.length) {
       return res.json({ message: "This transaction is not found" });
     }
     res.json(data[0]);
