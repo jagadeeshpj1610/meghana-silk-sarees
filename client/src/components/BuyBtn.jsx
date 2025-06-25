@@ -1,8 +1,15 @@
-import '../css/mycart.css'
 
-const BuyButton = () => {
+
+const BuyButton = ({sareeInfo}) => {
+    const handleClickOnBuy = async () => {
+        console.log(Date.now())
+        const orderId = `${sareeInfo._id}${Date.now()}`
+
+
+    }
+
     return(
-        <button className="butBtnn">Buy</button>
+        <button onClick={handleClickOnBuy}>Buy</button>
     )
 }
 

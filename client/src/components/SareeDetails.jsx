@@ -49,14 +49,14 @@ const SareeDetails = ({ sareesInfo, setSarees, setToastMessage, isAdmin }) => {
                             <p style={{ textAlign: "left" }}>Title : {sareesInfo.sareeName}</p>
                             <p>Price : ₹{sareesInfo.sareePrice}</p>
                         </div>
-                        { isAdmin && <div>
+                        {isAdmin && <div>
                             <img className='edit' src={el} alt="" onClick={() => setIsEditing(true)} />
-                            <img className='delete' src={del} alt="" onClick={handleDelete} />  
+                            <img className='delete' src={del} alt="" onClick={handleDelete} />
                         </div>}
                     </div>
                     <div className='buyBtns'>
-                        <AddToCart sareeInfo = {sareesInfo} />
-                        <BuyButton />
+                        <AddToCart sareeInfo={sareesInfo} />
+                        <BuyButton sareeInfo={sareesInfo} />
                     </div>
                 </div>
             )}
