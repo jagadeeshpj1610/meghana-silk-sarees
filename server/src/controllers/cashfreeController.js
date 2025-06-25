@@ -19,7 +19,8 @@ const createOrder = async (req, res) => {
       const createdDocument = transactionModel.create({user: req.user.id, orders: [{orderId: response.order_id}]});
       return res.json(createdDocument);
     }
-    userExist.orders.push({orderId: response.order_id})
+    userExist.orders.push({orderId: response.order_id});
+    userExist.save();
     console.log(response)
     res.json(response)
   } catch (err) {
@@ -29,7 +30,8 @@ const createOrder = async (req, res) => {
 };
 
 const verifyPayment = async (req, res) => {
-  const response = await fetch("https://sandbox.cashfree.com/pg/orders/68528d43a487e213e0de219b-1750844932529/payments", {
+  const {orderId} = req.params;
+  const response = await fetch(`https://sandbox.cashfree.com/pg/orders/${orderId}/payments`, {
     headers: {
       'x-client-id': process.env.CASHFREE_APP_ID,
       'x-client-secret': process.env.CASHFREE_SECRET_KEY,
