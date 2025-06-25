@@ -20,7 +20,7 @@ const SignUp = () => {
             const response = await fetch('http://localhost:8000/auth/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email, password }),
+                body: JSON.stringify({ name, email, password, phone }),
                 credentials: "include"
             });
 
