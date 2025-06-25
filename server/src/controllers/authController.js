@@ -45,10 +45,10 @@ const login = async (req, res) => {
 
 const signup = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, phone } = req.body;
 
-    if (!name || !email || !password) {
-      return res.status(400).json({ message: "name, email and password is required" });
+    if (!name || !email || !password || !phone) {
+      return res.status(400).json({ message: "name, email, password and phone is required" });
     }
 
     if (!name.match(/^[a-zA-Z]+$/)) {
@@ -60,12 +60,16 @@ const signup = async (req, res) => {
     if (!password.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{10,}$/)) {
       return res.status(400).json({ message: "password must be above the length of 9, and have at least one character, number and special character" });
     }
-    const newUser = await userModel.create({ email, password, name })
+    if(!phone.match(/^(?:\+91[-\s]?|0)?[6-9]\d{9}$/)){
+      return res.status(400).json({message: "Phone number length must be 10"})
+    }
+    const newUser = await userModel.create({ email, password, name, phone })
     res.json({ newUser, message: "new user created successfully" });
   } catch (err) {
-    if (err.errorResponse.code === 11000) {
-      return res.json({ message: "Another user is exist with this email" });
-    }
+    // if (err.errorResponse.code === 11000) {
+    //   return res.json({ message: "Another user is exist with this email" });
+    // }
+    console.log(err)
     res.status(400).json({ message: "Internal server error" })
   }
 }
