@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-const paymentSchema = mongoose.Schema({
-  userId: {
+const transactionSchema = mongoose.Schema({
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },
@@ -15,3 +15,7 @@ const paymentSchema = mongoose.Schema({
     }
   ]
 })
+
+const transactionModel = mongoose.model('Transcations', transactionSchema);
+
+export default transactionModel;

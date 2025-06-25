@@ -1,5 +1,7 @@
 import dotenv from "dotenv";
 import { createCashfreeOrder } from "../helpers/cashfreeHelper.js";
+import transactionModel from "../models/transactionModel.js";
+import { response } from "express";
 dotenv.config();
 
 const createOrder = async (req, res) => {
@@ -11,7 +13,14 @@ const createOrder = async (req, res) => {
       email: req.user.email,
       phone: req.user.phone
     }
-    const response = await createCashfreeOrder(orderId, amount, customer)
+    const response = await createCashfreeOrder(orderId, amount, customer);
+    const userExist = await transactionModel.findOne({user: req.user.id});
+    if(!userExist){
+      const createdDocument = transactionModel.create({user: req.user.id, orders: [{orderId: response.order_id}]});
+      return res.json(createdDocument);
+    }
+    userExist.orders.push({orderId: response.order_id})
+    console.log(response)
     res.json(response)
   } catch (err) {
     console.log(err);
