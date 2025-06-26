@@ -11,7 +11,11 @@ const transactionSchema = mongoose.Schema({
         type: String,
         required: true,
         unique: true
-      }
+      },
+      card: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Card",
+      },
     }
   ]
 })
