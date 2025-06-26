@@ -36,9 +36,9 @@ const fetchPaymentDetails =  async (orderId) => {
         'x-client-secret': process.env.CASHFREE_SECRET_KEY,
         'x-api-version': "2022-09-01"
       }
-      
     });
-    return response;
+    const data = await response.json();
+    return data;
 }
 
 export {

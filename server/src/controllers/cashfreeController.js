@@ -14,8 +14,8 @@ const createOrder = async (req, res) => {
       phone: req.user.phone
     }
 
-    if(!orderId || !amount || !cardId){
-      return res.status(400).json({message: "Please provide orderId, amount and cardId"})
+    if (!orderId || !amount || !cardId) {
+      return res.status(400).json({ message: "Please provide orderId, amount and cardId" })
     }
 
     const response = await createCashfreeOrder(orderId, amount, customer);
@@ -39,15 +39,14 @@ const paymentDetails = async (req, res) => {
     if (!orderId) {
       return res.status(404).json({ message: "OrderId is required" });
     }
-    const response = await fetchPaymentDetails(orderId);
-    const data = await response.json();
-    if(!data.length) {
+    const data = await fetchPaymentDetails(orderId);
+    if (!data.length) {
       return res.json({ message: "This transaction is not found" });
     }
     res.json(data[0]);
   } catch (err) {
     console.log(err);
-    res.status(400).json({message: "Internal Server Error"});
+    res.status(400).json({ message: "Internal Server Error" });
   }
 }
 
