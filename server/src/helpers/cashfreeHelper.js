@@ -5,7 +5,7 @@ dotenv.config();
 const { CASHFREE_APP_ID, CASHFREE_SECRET_KEY, CASHFREE_ENV } = process.env;
 const BASE_URL = CASHFREE_ENV === 'sandbox' ? 'https://sandbox.cashfree.com/pg' : 'https://api.cashfree.com/pg';
 
-export async function createCashfreeOrder(orderId, amount, customer) {
+const createCashfreeOrder = async (orderId, amount, customer) => {
   const headers = {
     'Content-Type': 'application/json',
     'x-api-version': '2022-09-01',
@@ -27,4 +27,21 @@ export async function createCashfreeOrder(orderId, amount, customer) {
 
   const res = await axios.post(`${BASE_URL}/orders`, body, { headers });
   return res.data;
+}
+
+const fetchPaymentDetails =  async (orderId) => {
+   const response = await fetch(`https://sandbox.cashfree.com/pg/orders/${orderId}/payments`, {
+      headers: {
+        'x-client-id': process.env.CASHFREE_APP_ID,
+        'x-client-secret': process.env.CASHFREE_SECRET_KEY,
+        'x-api-version': "2022-09-01"
+      }
+      
+    });
+    return response;
+}
+
+export {
+  createCashfreeOrder,
+  fetchPaymentDetails
 }

@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
-import { createCashfreeOrder } from "../helpers/cashfreeHelper.js";
+import { createCashfreeOrder, fetchPaymentDetails } from "../helpers/cashfreeHelper.js";
 import transactionModel from "../models/transactionModel.js";
-import { response } from "express";
+
 dotenv.config();
 
 const createOrder = async (req, res) => {
@@ -39,13 +39,7 @@ const paymentDetails = async (req, res) => {
     if (!orderId) {
       return res.status(404).json({ message: "OrderId is required" });
     }
-    const response = await fetch(`https://sandbox.cashfree.com/pg/orders/${orderId}/payments`, {
-      headers: {
-        'x-client-id': process.env.CASHFREE_APP_ID,
-        'x-client-secret': process.env.CASHFREE_SECRET_KEY,
-        'x-api-version': "2022-09-01"
-      }
-    });
+    const response = await fetchPaymentDetails(orderId);
     const data = await response.json();
     if(!data.length) {
       return res.json({ message: "This transaction is not found" });
