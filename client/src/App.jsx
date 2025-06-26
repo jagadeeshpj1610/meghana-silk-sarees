@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import UpdateSaree from './components/upload';
-// import PaymentSuccess from './components/paymentSucess';
+import PaymentSuccess from './components/paymentSucess';
 
 
 
@@ -56,7 +56,7 @@ function App() {
         {!isLoggedIn && <Route path="/signup" element={<Signup />} />}
         <Route path="/cart" element={<CartPage />} />
         <Route path='/addNewSaree' element={<UpdateSaree />} />
-        {/* <Route path="/payment/:orderId" element={<PaymentSuccess />} /> */}
+        <Route path="/payment-details/:orderId" element={<PaymentSuccess />} />
       </Routes>
     </Router>
   );

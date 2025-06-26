@@ -30,7 +30,7 @@ const BuyButton = ({ sareeInfo }) => {
         cashfree.checkout({
             paymentSessionId: data.payment_session_id,
             redirectTarget: "_self",
-            returnUrl: `http://localhost:5173/payment/${orderId}`,
+            returnUrl: `http://localhost:5173/payment-details/${orderId}`,
         }).then((result)=> console.log(result))
 
     }
