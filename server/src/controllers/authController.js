@@ -67,9 +67,9 @@ const signup = async (req, res) => {
     const newUser = await userModel.create({ email, password, name, phone })
     res.json({ newUser, message: "new user created successfully" });
   } catch (err) {
-    // if (err.errorResponse.code === 11000) {
-    //   return res.json({ message: "Another user is exist with this email" });
-    // }
+    if (err.errorResponse || err.errorResponse.code === 11000) {
+      return res.status(400).json({ message: "Another user is exist with this email" });
+    }
     console.log(err)
     res.status(400).json({ message: "Internal server error" })
   }
