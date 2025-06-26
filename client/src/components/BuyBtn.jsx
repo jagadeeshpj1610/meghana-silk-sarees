@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import '../css/sarees.css'
 
 const BuyButton = ({ sareeInfo }) => {
@@ -19,6 +20,7 @@ const BuyButton = ({ sareeInfo }) => {
             body: JSON.stringify(orderDetails),
         })
         const data = await res.json();
+      const orderId = data.order_id || data.customer_details?.order_id;
         console.log(data)
 
         const cashfree = new window.Cashfree({
@@ -28,7 +30,7 @@ const BuyButton = ({ sareeInfo }) => {
         cashfree.checkout({
             paymentSessionId: data.payment_session_id,
             redirectTarget: "_self",
-            returnUrl: "http://localhost:5173/",
+            returnUrl: `http://localhost:5173/payment/${orderId}`,
         }).then((result)=> console.log(result))
 
     }

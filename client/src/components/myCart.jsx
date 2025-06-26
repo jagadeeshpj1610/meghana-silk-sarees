@@ -54,7 +54,7 @@ const CartPage = () => {
                     ))}
                 </div>
             ) : (
-                <p>Your cart is empty.</p>
+                <p style={{textAlign:'center', padding:'10px', fontSize:'1rem'}}>Your cart is empty.</p>
             )}
         </div>
     );
