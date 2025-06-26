@@ -31,7 +31,7 @@ const SignUp = () => {
                 navigate('/login');
 
             } else {
-                setMessage("Type correct email and password")
+                setMessage(data.message)
                 console.error("Login failed:", response.statusText);
             }
         } catch (error) {
