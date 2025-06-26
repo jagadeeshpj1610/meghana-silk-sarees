@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+import dotenv, { populate } from "dotenv";
 import { createCashfreeOrder, fetchPaymentDetails } from "../helpers/cashfreeHelper.js";
 import transactionModel from "../models/transactionModel.js";
 
@@ -35,11 +35,18 @@ const createOrder = async (req, res) => {
 
 const getUserTransactions = async (req, res) => {
   try {
-    const userTransactions = await transactionModel.findOne({ user: req.user.id });
+    const userTransactions = await transactionModel.findOne({ user: req.user.id }).populate("user").populate({
+      path: "orders.card",
+      populate: {
+        path: "sareePhoto",
+        model: "Photo",
+      }
+    });
+
     if (!userTransactions) {
       return res.json({ message: "No transaction found for this user" });
     }
-    res.josn(userTransactions)
+    res.json(userTransactions)
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: "Internal Server Error" });
