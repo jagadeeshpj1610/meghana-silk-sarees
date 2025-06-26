@@ -52,11 +52,11 @@ const signup = async (req, res) => {
       return res.status(400).json({ message: "name, email, password and phone is required" });
     }
 
-    if (!name.match(/^[a-zA-Z]+$/)) {
+    if (!name.match(/^[a-zA-Z ]+$/)) {
       return res.status(400).json({ message: "name must be letters" })
     }
     if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-      return res.status(400).json({ message: "type correct email" })
+      return res.status(400).json({ message: "type valid email" })
     }
     if (!password.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{10,}$/)) {
       return res.status(400).json({ message: "password must be above the length of 9, and have at least one character, number and special character" });
