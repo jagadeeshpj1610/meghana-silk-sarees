@@ -33,6 +33,19 @@ const createOrder = async (req, res) => {
   }
 };
 
+const getUserTransactions = async (req, res) => {
+  try {
+    const userTransactions = await transactionModel.findOne({ user: req.user.id });
+    if (!userTransactions) {
+      return res.json({ message: "No transaction found for this user" });
+    }
+    res.josn(userTransactions)
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ message: "Internal Server Error" });
+  }
+}
+
 const paymentDetails = async (req, res) => {
   try {
     const { orderId } = req.params;
@@ -52,5 +65,6 @@ const paymentDetails = async (req, res) => {
 
 export {
   createOrder,
-  paymentDetails
+  paymentDetails,
+  getUserTransactions,
 }
