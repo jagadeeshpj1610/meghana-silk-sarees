@@ -6,20 +6,25 @@ dotenv.config();
 
 const createOrder = async (req, res) => {
   try {
-    const { orderId, amount } = req.body;
+    const { orderId, amount, cardId } = req.body;
     const customer = {
       id: req.user.id,
       name: req.user.name,
       email: req.user.email,
       phone: req.user.phone
     }
+
+    if(!orderId || !amount || !cardId){
+      return res.status(400).json({message: "Please provide orderId, amount and cardId"})
+    }
+
     const response = await createCashfreeOrder(orderId, amount, customer);
     const userExist = await transactionModel.findOne({ user: req.user.id });
     if (!userExist) {
-      const createdDocument = transactionModel.create({ user: req.user.id, orders: [{ orderId }] });
+      const createdDocument = transactionModel.create({ user: req.user.id, orders: [{ orderId: response.order_id, card: cardId }] });
       return res.json(createdDocument);
     }
-    userExist.orders.push({ orderId: response.order_id });
+    userExist.orders.push({ orderId: response.order_id, card: cardId });
     userExist.save();
     res.json(response)
   } catch (err) {

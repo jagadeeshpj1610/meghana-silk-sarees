@@ -8,6 +8,7 @@ const BuyButton = ({ sareeInfo }) => {
             return;
         }
         const orderDetails = {
+            cardId: sareeInfo._id,
             orderId: `${sareeInfo._id}-${Date.now()}`,
             amount: sareeInfo.sareePrice,
         }
