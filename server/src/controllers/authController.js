@@ -61,8 +61,8 @@ const signup = async (req, res) => {
     if (!password.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{10,}$/)) {
       return res.status(400).json({ message: "password must be above the length of 9, and have at least one character, number and special character" });
     }
-    if(!phone.match(/^(?:\+91[-\s]?|0)?[6-9]\d{9}$/)){
-      return res.status(400).json({message: "Phone number length must be 10"})
+    if (!phone.match(/^(?:\+91[-\s]?|0)?[6-9]\d{9}$/)) {
+      return res.status(400).json({ message: "Phone number length must be 10" })
     }
     const newUser = await userModel.create({ email, password, name, phone })
     res.json({ newUser, message: "new user created successfully" });
@@ -84,26 +84,40 @@ const logout = (req, res) => {
   }
 }
 
-const isLoggedIn = (req, res) => {
+const isLoggedIn = async(req, res) => {
   try {
-    if(req.cookies.token){
-      return res.json({isLoggedIn: true})
+    // if(req.cookies.token){
+    //   return res.json({isLoggedIn: true})
+    // }
+    const token = req.cookies.token;
+
+    if (!token) {
+      return res.json({ isLoggedIn: false, user: null });
     }
-    res.json({isLoggedIn:false})
+     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+
+    const user = await userModel.findById(decoded.id).select("-password");
+
+    if (!user) {
+      return res.json({ isLoggedIn: false, user: null });
+    }
+
+    res.json({ isLoggedIn: true, user, });
+
   } catch (error) {
-    res.json({isLoggedIn: false})
-  }  
+    res.json({ isLoggedIn: false, user: null })
+  }
 }
 
 const isAdmin = (req, res) => {
-  try{
-    if(req.user.role === "admin"){
-      return res.json({isAdmin: true});
+  try {
+    if (req.user.role === "admin") {
+      return res.json({ isAdmin: true });
     }
-    res.json({isAdmin: false})
-  } catch(err){
+    res.json({ isAdmin: false })
+  } catch (err) {
     console.log(err);
-    res.status(400).json({isAdmin: false, message: "Internal server error"});
+    res.status(400).json({ isAdmin: false, message: "Internal server error" });
   }
 }
 

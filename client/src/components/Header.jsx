@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import CartButton from './cartButton';
 
-const Header = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
+const Header = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin}) => {
     const navigate = useNavigate();
     const [showPopup, setShowPopup] = useState(false);
     return (
@@ -25,10 +25,11 @@ const Header = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
                 {isLoggedIn && (
                     <>
                         <button className='logoutBtn' onClick={() => setShowPopup(true)}>Logout</button>
-                        <Logout showPopup={showPopup} setShowPopup={setShowPopup} setIsLoggedIn={setIsLoggedIn} setIsAdmin = {setIsAdmin}/>
+                        <Logout showPopup={showPopup} setShowPopup={setShowPopup} setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />
                     </>
                 )}
-                <CartButton isAdmin={isAdmin} />
+                {isLoggedIn && <CartButton isAdmin={isAdmin} />}
+                {isLoggedIn && <Link className='profileBtn' to='/profile'>Profile</Link>}
             </div>
         </div>
     );

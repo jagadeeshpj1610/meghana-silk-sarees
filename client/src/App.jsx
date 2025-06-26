@@ -3,17 +3,19 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/SignUp';
 import CartPage from './components/myCart';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, data } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import UpdateSaree from './components/upload';
 import PaymentSuccess from './components/paymentSucess';
+import Profile from './components/profile';
 
 
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [isAdmin, setIsAdmin] = useState(null)
+  const [userDetails, setUserDetails] = useState(null)
 
   useEffect(() => {
     const fetchStatus = async () => {
@@ -22,6 +24,9 @@ function App() {
           credentials: "include"
         });
         const loginData = await loginRes.json();
+        // console.log(loginData);
+        setUserDetails(data.user)
+        
         setIsLoggedIn(loginData.isLoggedIn);
         
         
@@ -57,6 +62,7 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path='/addNewSaree' element={<UpdateSaree />} />
         <Route path="/payment-details/:orderId" element={<PaymentSuccess />} />
+        <Route path="/profile" element={<Profile user = {userDetails} />} />
       </Routes>
     </Router>
   );
