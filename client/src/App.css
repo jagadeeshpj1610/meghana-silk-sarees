@@ -31,3 +31,60 @@ body {
     border-radius: 4px;
     cursor: pointer;
 }
+
+
+.popupBack {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popupSimple {
+  background-color: white;
+  padding: 20px 25px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  position: relative;
+}
+
+.closeBtnnn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 28px;
+  border: none;
+  width: 35px;
+  background: black;
+  color: white;
+  border-radius: 80%;
+  cursor: pointer;
+}
+
+.popupSimple h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: black;
+}
+
+.popupSimple p {
+  margin: 8px 0;
+  font-size: 1rem;
+  color: black;
+  padding: 5px;
+
+}
+
+.popupSimple strong {
+  font-weight: 700;
+}

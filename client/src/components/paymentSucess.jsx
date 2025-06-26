@@ -1,11 +1,16 @@
 
 
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import PaymentStatusPopup from './paymentStatusPopup';
 
 const PaymentSuccess = () => {
     const { orderId } = useParams();
-    // const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
+    const [paymentDetails, setPaymentDetails] = useState(null)
+    const [paymentPopup, setPaymentPopup] = useState(true)
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchPaymentStatus = async () => {
@@ -15,21 +20,27 @@ const PaymentSuccess = () => {
                     credentials: 'include'
                 });
                 const data = await res.json();
+                setPaymentDetails(data)
             } catch (err) {
                 console.log(err);
             } finally {
-                // setLoading(false);
+                setLoading(false);
             }
         };
         fetchPaymentStatus();
     }, [orderId]);
 
-    // if (loading) return <div>Checking payment status...</div>;
+    const handleClosePopup = () => {
+        setPaymentPopup(false);
+        navigate("/");
+    };
+
+    if (loading) return <div style={{textAlign:'center', fontSize:'1rem', padding:'10px'}}>Checking payment status...</div>;
 
     return (
-        <div>
-            <h2>Payment Status</h2>
-        </div>
+        <>
+        {paymentPopup && (<PaymentStatusPopup details = {paymentDetails} close = {handleClosePopup} />)}
+        </>
     );
 };
 
