@@ -9,6 +9,7 @@ import Header from './components/Header';
 import UpdateSaree from './components/upload';
 import PaymentSuccess from './components/paymentSucess';
 import Profile from './components/profile';
+import { UserContext } from './components/userContext';
 
 
 
@@ -25,7 +26,7 @@ function App() {
         });
         const loginData = await loginRes.json();
         // console.log(loginData);
-        setUserDetails(data.user)
+        setUserDetails(loginData.user)
         
         setIsLoggedIn(loginData.isLoggedIn);
         
@@ -53,8 +54,9 @@ function App() {
   if (isLoggedIn === null || isAdmin === null) return <h1 style={{ textAlign: 'center' }}>Loading...</h1>;
 
   return (
+    <UserContext.Provider value={{ userDetails, setUserDetails, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }}>
     <Router>
-      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
+      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} userDetails = {userDetails} />
       <Routes>
         <Route path="/" element={<Home isAdmin={isAdmin} isLoggedIn = {isLoggedIn} />} />
         {!isLoggedIn && <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn}   setIsAdmin={setIsAdmin} />} />}
@@ -62,9 +64,10 @@ function App() {
         <Route path="/cart" element={<CartPage isLoggedIn = {isLoggedIn} />} />
         <Route path='/addNewSaree' element={<UpdateSaree />} />
         <Route path="/payment-details/:orderId" element={<PaymentSuccess />} />
-        <Route path="/profile" element={<Profile user = {userDetails} />} />
+        <Route path="/profile" element={<Profile  />} />
       </Routes>
     </Router>
+    </UserContext.Provider>
   );
 }
 export default App;

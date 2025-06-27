@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import CartButton from './cartButton';
 
-const Header = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin}) => {
+const Header = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
     const navigate = useNavigate();
     const [showPopup, setShowPopup] = useState(false);
     return (

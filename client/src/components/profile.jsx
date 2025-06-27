@@ -1,23 +1,28 @@
 import { useState } from 'react';
 import '../css/header.css'
+import Transactions from './transactions';
+import { useUser } from './userContext';
 
-const Profile = ({user}) => {
+const Profile = () => {
+    const {userDetails} = useUser()
 
-    if (!user) return <div style={{textAlign:'center', padding:'15px', fontSize:'1rem'}}>Loading...</div>;
+    // console.log(userDetails);
+    
+
+    if (!userDetails) return <div style={{textAlign:'center', padding:'15px', fontSize:'1rem'}}>Loading...</div>;
 
     return (
         <div>
             <div>
-
+                <Transactions />
             </div>
             <div className="profilePage">
-                <h2>Welcome, {user.name || "User"}</h2>
-                <p>Name: {user.name}</p>
-                <p>Email: {user.email}</p>
-                <p>Phone: {user.phone}</p>
-                <p>Role: {user.role}</p>
+                <p>Name: {userDetails.name}</p>
+                <p>Email: {userDetails.email}</p>
+                <p>Phone: {userDetails.phone}</p>
             </div>
         </div>
+        
     );
 }
 
