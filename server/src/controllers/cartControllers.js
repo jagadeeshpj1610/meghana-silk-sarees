@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { model } from "mongoose";
 import cartModel from "../models/cartModel.js";
 
 const addToCart = async (req, res) => {
@@ -6,28 +6,23 @@ const addToCart = async (req, res) => {
     const { cardId } = req.body;
     const user = req.user.id;
 
-    const ObjectIdCard = new mongoose.Types.ObjectId(cardId)
+    const ObjectIdCard = new mongoose.Types.ObjectId(cardId);
     const userExist = await cartModel.findOne({ user })
 
     if (!userExist) {
-      const postedCard = await cartModel.create({ user, cards: [{ card: cardId, quantity: 1 }] })
+      const postedCard = await cartModel.create({ user, cards: [{ card: cardId }] })
       return res.json(postedCard)
     }
-    await cartModel.updateOne(
-      { user: req.user.id },
-      { $pull: { cards: { card: null } } }
-    );
 
     const isElementExist = userExist.cards.findIndex((element) => element.card.equals(ObjectIdCard))
-    if (isElementExist === -1) {
-      userExist.cards.push({ card: cardId, quantity: 1 })
-      await userExist.save();
-      return res.status(201).json({ userExist, message: "new card is created successfully" })
+    if (isElementExist !== -1) {
+      return res.status(400).json({message: "This card is already exist"});
     }
-    userExist.cards[isElementExist].quantity += 1;
+  
+    userExist.cards.push({ card: cardId })
     await userExist.save();
-
-    res.json(userExist);
+  
+    res.status(201).json({ userExist, message: "new card is created successfully" })
 
   } catch (err) {
     console.log(err);
@@ -44,8 +39,8 @@ const getCardsInCart = async (req, res) => {
         model: "Photo"
       }
     })
-    if(!fetchedCart){
-      return res.json({message: "Your cart is empty"})
+    if (!fetchedCart) {
+      return res.json({ message: "Your cart is empty" })
     }
     // const fetchedPhoto = await cardModel.find({id: })
     res.json(fetchedCart)
@@ -60,7 +55,7 @@ const removeACardFromCart = async (req, res) => {
     const { cardId } = req.body;
     const user = req.user.id;
     console.log(user, cardId)
-    const cardIdObject = new mongoose.Types.ObjectId(cardId)
+    const cardIdObject = new mongoose.Types.ObjectId(cardId);
 
     const afterDeletedCart = await cartModel.findOneAndUpdate({ user },
       {
@@ -71,6 +66,7 @@ const removeACardFromCart = async (req, res) => {
         },
       }, { new: true },
     )
+
     if (!afterDeletedCart) {
       return res.status(400).json({ message: "Not found" })
     }

@@ -15,7 +15,6 @@ const cartSchema = mongoose.Schema({
         required: [true, "This is required"],
         unique: false,
       },
-      quantity: Number,
     }
   ]
 })
