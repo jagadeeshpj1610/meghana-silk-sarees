@@ -4,10 +4,10 @@ import mongoose from "mongoose";
 const uploadCard = async (req, res) => {
   try {
 
-    const { sareeName, sareePrice } = req.body;
+    const { sareeName, sareePrice, sareeDiscription } = req.body;
     const sareePhoto = res.uploadedPhoto.id;
-    if (!sareeName || !sareePrice || !sareePhoto) {
-      return res.status(400).json({ message: "Saree name, saree price and saree photo is required" })
+    if (!sareeName || !sareePrice || !sareePhoto || !sareeDiscription) {
+      return res.status(400).json({ message: "Saree name, saree price, saree photo and saree discription is required" })
     }
     if (!sareeName.match(/^[a-zA-Z ]+$/)) {
       return res.status(400).json({ message: "Saree name must be letters" })
@@ -15,8 +15,15 @@ const uploadCard = async (req, res) => {
     if (!String(sareePrice).match(/^\d+(\.\d{1,2})?$/)) {
       return res.status(400).json({ message: "Saree Price must be numbers" })
     }
-    const uploadedCard = await cardModel.create({ sareeName, sareePrice, sareePhoto });
-    res.json({ uploadedCard, message: "new card is created successfully" })
+    if(sareeDiscription.length > 250){
+      return res.status(400).json({message: "Saree Discription must be below length of 250"});
+    }
+    console.log(sareeDiscription)
+
+    const uploadedCard = await cardModel.create({ sareeName, sareePrice, sareePhoto, sareeDiscription });
+
+    res.json({uploadedCard, message: "new card is created successfully" })
+
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: "Internal server error" })
@@ -38,20 +45,23 @@ const fetchCard = async (req, res) => {
 const updateCard = async (req, res) => {
   try {
     const cardId = req.params.id;
-    const { sareeName, sareePrice } = req.body;
+    const { sareeName, sareePrice, sareeDiscription } = req.body;
     // const sareePhoto = res.uploadedPhoto.id;
 
     const updateFields = {
       sareeName,
       sareePrice,
+      sareeDiscription,
     };
     if (res.uploadedPhoto && res.uploadedPhoto.id) {
       updateFields.sareePhoto = res.uploadedPhoto.id;
     }
-    if (!sareeName || !sareePrice) {
+    if (!sareeName || !sareePrice || !sareeDiscription) {
       return res.status(400).json({ message: "sareeName, sareePrice are required" });
     }
+    
     const card = await cardModel.findByIdAndUpdate(cardId, updateFields, { new: true }).populate("sareePhoto");
+  
     if (!card) {
       return res.status(400).json({ message: "This card is not found" })
     }
