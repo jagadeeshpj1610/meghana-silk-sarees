@@ -8,7 +8,7 @@ const BuyButton = ({ sareeInfo, isLoggedIn }) => {
 
         if (!isLoggedIn) {
             navigate('/login')
-        }
+        } 
 
         if (!navigator.onLine) {
             alert("You're offline");

@@ -5,7 +5,7 @@ import BuyButton from './BuyBtn';
 
 import RemoveFromCart from './removeFromCart';
 
-const CartPage = () => {
+const CartPage = ({isLoggedIn}) => {
     const [cards, setCards] = useState([])
     const [data, setData] = useState(null)
 
@@ -46,7 +46,7 @@ const CartPage = () => {
                                     Ideal for festive occasions, it adds timeless grace and charm to your look.</p>
 
                                 <div className='buyCartBtns'>
-                                    <BuyButton />
+                                    <BuyButton sareeInfo={item.card} isLoggedIn={isLoggedIn} />
                                     <RemoveFromCart cardId={item.card._id} toRemove={() => handleRemove(item.card._id)} />
                                 </div>
                             </div>

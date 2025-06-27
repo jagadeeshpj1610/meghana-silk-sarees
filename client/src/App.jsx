@@ -59,7 +59,7 @@ function App() {
         <Route path="/" element={<Home isAdmin={isAdmin} isLoggedIn = {isLoggedIn} />} />
         {!isLoggedIn && <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn}   setIsAdmin={setIsAdmin} />} />}
         {!isLoggedIn && <Route path="/signup" element={<Signup />} />}
-        <Route path="/cart" element={<CartPage />} />
+        <Route path="/cart" element={<CartPage isLoggedIn = {isLoggedIn} />} />
         <Route path='/addNewSaree' element={<UpdateSaree />} />
         <Route path="/payment-details/:orderId" element={<PaymentSuccess />} />
         <Route path="/profile" element={<Profile user = {userDetails} />} />
