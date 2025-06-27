@@ -4,12 +4,13 @@ import { useNavigate } from 'react-router-dom';
 
 const BuyButton = ({ sareeInfo, isLoggedIn }) => {
     const navigate = useNavigate()
-    const [isClicked, setIsClicked] = useState();
+    const [isClicked, setIsClicked] = useState(false);
     const handleClickOnBuy = async () => {
+        setIsClicked(true);
 
         if (!isLoggedIn) {
             navigate('/login')
-        } 
+        }
 
         if (!navigator.onLine) {
             alert("You're offline");
@@ -29,7 +30,7 @@ const BuyButton = ({ sareeInfo, isLoggedIn }) => {
             body: JSON.stringify(orderDetails),
         })
         const data = await res.json();
-      const orderId = data.order_id || data.customer_details?.order_id;
+        const orderId = data.order_id || data.customer_details?.order_id;
         console.log(data)
 
         const cashfree = new window.Cashfree({
@@ -40,13 +41,14 @@ const BuyButton = ({ sareeInfo, isLoggedIn }) => {
             paymentSessionId: data.payment_session_id,
             redirectTarget: "_self",
             returnUrl: `http://localhost:5173/payment-details/${orderId}`,
-        }).then((result)=> console.log(result))
+        }).then((result) => console.log(result))
 
     }
+    console.log(isClicked)
 
 
     return (
-        <button className='buybtnn' onClick={handleClickOnBuy}>Buy</button>
+        <button className='buybtnn' disabled={isClicked} onClick={handleClickOnBuy}>Buy</button>
     )
 }
 
