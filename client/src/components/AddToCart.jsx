@@ -1,13 +1,17 @@
 import { useState } from "react";
 import '../App.css'
+import { useNavigate } from "react-router-dom";
 
 
-const AddToCart = ({ sareeInfo }) => {
+const AddToCart = ({ sareeInfo, isLoggedIn }) => {
+    const navigate = useNavigate()
 
     const [message, setMessage] = useState('')
     const [showMessage, setShowMessage] = useState(false);
 
     const addToCartFunction = async () => {
+
+        if(!isLoggedIn) navigate('/login')
 
         const response = await fetch('http://localhost:8000/cart', {
             method: 'POST',

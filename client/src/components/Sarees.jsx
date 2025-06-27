@@ -4,7 +4,7 @@ import SareeDetails from "./SareeDetails";
 
 
 
-const Sarees = ({isAdmin}) => {
+const Sarees = ({isAdmin, isLoggedIn}) => {
     const [sarees, setSarees] = useState([]);
     const [toastMessage, setToastMessage] = useState("");
     const [data, setData] = useState(null)
@@ -47,7 +47,7 @@ const Sarees = ({isAdmin}) => {
                     sarees.map((saree, index) => (
                         <div key={saree._id} className="sareeCard">
                             <img className="image" src={saree.sareePhoto.url} alt={`saree-${index + 1}`} />
-                            <SareeDetails sareesInfo={saree} setSarees={setSarees} setToastMessage={setToastMessage} isAdmin={isAdmin} />
+                            <SareeDetails sareesInfo={saree} setSarees={setSarees} setToastMessage={setToastMessage} isAdmin={isAdmin} isLoggedIn = {isLoggedIn} />
                         </div>
 
                     ))

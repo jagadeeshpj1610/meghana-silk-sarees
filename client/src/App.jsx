@@ -56,7 +56,7 @@ function App() {
     <Router>
       <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
       <Routes>
-        <Route path="/" element={<Home isAdmin={isAdmin} />} />
+        <Route path="/" element={<Home isAdmin={isAdmin} isLoggedIn = {isLoggedIn} />} />
         {!isLoggedIn && <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn}   setIsAdmin={setIsAdmin} />} />}
         {!isLoggedIn && <Route path="/signup" element={<Signup />} />}
         <Route path="/cart" element={<CartPage />} />

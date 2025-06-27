@@ -7,7 +7,7 @@ import Modal from './popup'
 import AddToCart from './AddToCart'
 import BuyButton from './BuyBtn'
 
-const SareeDetails = ({ sareesInfo, setSarees, setToastMessage, isAdmin }) => {
+const SareeDetails = ({ sareesInfo, setSarees, setToastMessage, isAdmin, isLoggedIn }) => {
     const [isEditing, setIsEditing] = useState(false);
 
     const handleDelete = async () => {
@@ -69,8 +69,8 @@ const SareeDetails = ({ sareesInfo, setSarees, setToastMessage, isAdmin }) => {
                         </div>}
                     </div>
                     <div className='buyBtns'>
-                        {!isAdmin && <AddToCart sareeInfo={sareesInfo} />}
-                        {!isAdmin && <BuyButton sareeInfo={sareesInfo} />}
+                        {!isAdmin && <AddToCart sareeInfo={sareesInfo} isLoggedIn = {isLoggedIn} />}
+                        {!isAdmin && <BuyButton sareeInfo={sareesInfo}  />}
                     </div>
                 </div>
             )}
