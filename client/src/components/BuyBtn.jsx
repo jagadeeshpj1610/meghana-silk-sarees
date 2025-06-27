@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import '../css/sarees.css'
+import { useNavigate } from 'react-router-dom';
 
-const BuyButton = ({ sareeInfo }) => {
+const BuyButton = ({ sareeInfo, isLoggedIn }) => {
+    const navigate = useNavigate()
     const handleClickOnBuy = async () => {
+
+        if (!isLoggedIn) {
+            navigate('/login')
+        }
+
         if (!navigator.onLine) {
             alert("You're offline");
             return;
