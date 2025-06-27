@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect } from "react"
 import { useState } from "react"
 import '../css/profile.css'
+import PaymentStatus from './paymentStatus';
 
 
 
@@ -27,7 +28,10 @@ const Transactions = () => {
 
     return (
         <div>
+            <div className="top">
             <h2 style={{ marginBottom: '10px' }}>My Transactions</h2>
+            <PaymentStatus />
+            </div>
             {transactions && transactions.length > 0 ? (
                 <div className='cardsContaine'>
                     {transactions.map((transaction, index) => (

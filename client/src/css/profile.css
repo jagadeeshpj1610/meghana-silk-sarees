@@ -59,3 +59,23 @@
   align-items: start;
   gap: 6px;
 }
+
+
+.paymentStatusBtn {
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    width: 140px;
+    margin-right: 4rem;
+    cursor: pointer;
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
