@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const BuyButton = ({ sareeInfo, isLoggedIn }) => {
     const navigate = useNavigate()
+    const [isClicked, setIsClicked] = useState();
     const handleClickOnBuy = async () => {
 
         if (!isLoggedIn) {

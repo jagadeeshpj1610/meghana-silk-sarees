@@ -1,6 +1,7 @@
 import cardModel from "../models/cardModel.js";
 import mongoose from "mongoose";
 import cartModel from "../models/cartModel.js";
+import transactionModel from "../models/transactionModel.js";
 
 const uploadCard = async (req, res) => {
   try {
@@ -78,6 +79,15 @@ const deleteCard = async (req, res) => {
   try {
     const cardId = req.params.id;
     const cardIdObject = new mongoose.Types.ObjectId(cardId);
+    await transactionModel.updateMany({},
+      {
+        $pull: {
+          orders: {
+            card: cardIdObject
+          }
+        },
+      },
+    )
 
     await cartModel.updateMany({},
       {

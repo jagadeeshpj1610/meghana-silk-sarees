@@ -57,7 +57,7 @@ const removeACardFromCart = async (req, res) => {
     console.log(user, cardId)
     const cardIdObject = new mongoose.Types.ObjectId(cardId);
 
-    const afterDeletedCart = await cartModel.findOneAndUpdate({ user },
+    await cartModel.findOneAndUpdate({ user },
       {
         $pull: {
           cards: {
