@@ -16,7 +16,7 @@ const addToCart = async (req, res) => {
 
     const isElementExist = userExist.cards.findIndex((element) => element.card.equals(ObjectIdCard))
     if (isElementExist !== -1) {
-      return res.status(400).json({message: "This card is already exist"});
+      return res.status(400).json({message: "This card is already added to cart"});
     }
   
     userExist.cards.push({ card: cardId })
