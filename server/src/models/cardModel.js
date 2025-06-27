@@ -6,7 +6,7 @@ const cardSchema = mongoose.Schema({
     required: true,
   },
   sareePrice: {
-    type: String,
+    type: Number,
     required: true,
   },
   sareePhoto: {
