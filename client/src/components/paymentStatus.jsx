@@ -26,7 +26,9 @@ const PaymentStatus = () => {
 
     return (
         <>
-            <button className='paymentStatusBtn' onClick={() => setShowPopup(true)}>
+            <button className='paymentStatusBtn' 
+            // onClick={() => setShowPopup(true)}
+            >
                 Payment Status
             </button>
 
