@@ -42,7 +42,7 @@ const getCardsInCart = async (req, res) => {
     if (!fetchedCart) {
       return res.json({ message: "Your cart is empty" })
     }
-    // const fetchedPhoto = await cardModel.find({id: })
+
     res.json(fetchedCart)
   } catch (err) {
     console.log(err);
