@@ -33,11 +33,9 @@ const Transactions = () => {
                     {transactions.map((transaction, index) => (
                         <div key={index} className='productContainer'>
                             <img src={transaction.card.sareePhoto.url} alt="" className='sareeImage' />
-                            <div className='productDetails'>
-                                <p className='sareeName'><strong>Name:</strong> {transaction.card.sareeName}</p>
-                                <p className='sareePrice'><strong>Price:</strong> ₹{transaction.card.sareePrice}</p>
-                                <p className='sareePrice'><strong>Order Id:</strong> {transaction.orderId}</p>
-                            </div>
+                            <p className='sareeName'><strong>Name:</strong> {transaction.card.sareeName}</p>
+                            <p className='sareePrice'><strong>Price:</strong> ₹{transaction.card.sareePrice}</p>
+                            <p className='sareePrice'><strong>Order Id:</strong> {transaction.orderId}</p>
                         </div>
                     ))}
                 </div>
