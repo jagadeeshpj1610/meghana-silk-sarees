@@ -1,12 +1,30 @@
-import cardModel from "../models/cardModel";
+import cardModel from "../models/cardModel.js";
 
-const search = (req, res) => {
-  const {searchText}  = req.body;
-  if(!searchText){
-    return res.status(400).json({message: "Enter the value of searchText"});
+const search = async (req, res) => {
+  try {
+
+    const { searchText } = req.params;
+    if (!searchText) {
+      return res.status(400).json({ message: "Enter the value of searchText" });
+    }
+    const results = await cardModel.find({});
+    if(!results){
+      return res.status(400).json({message: "Sarees not found"});
+    }
+    const matched = results.filter((element)=>{
+      console.log(element.sareeName)
+      return element.sareeName.toLowerCase().includes(searchText.toLowerCase()) || Number(element.sareePrice) === Number(searchText)
+    });
+    if(matched.length === 0){
+      return res.status(400).json({message: "Sarees not found"});
+    }
+    res.json(matched)
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ message: "Internal Server Error" });
   }
-  const results = cardModel.aggregate([
-    {$match: {sareeName: searchText}}
-  ])
-  res.json(results)
+}
+
+export {
+  search
 }
