@@ -14,6 +14,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
                 <Link to='/' className='linkHeading'><h1>Meghana Silk Sarees</h1></Link>
             </div>
             <div className="headerButtons">
+                <Link to='/search' className = 'searchOption'>Search</Link>
                 {isAdmin && <Link to='/addNewSaree' className='addNewSaree'>Add New Saree</Link>}
                 {!isLoggedIn && (
                     <>

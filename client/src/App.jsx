@@ -10,6 +10,7 @@ import UpdateSaree from './components/upload';
 import PaymentSuccess from './components/paymentSucess';
 import Profile from './components/profile';
 import { UserContext } from './components/userContext';
+import Search from './components/search';
 
 
 
@@ -65,6 +66,7 @@ function App() {
         <Route path='/addNewSaree' element={<UpdateSaree />} />
         <Route path="/payment-details/:orderId" element={<PaymentSuccess />} />
         <Route path="/profile" element={<Profile  />} />
+        <Route path="/search" element={<Search  />} />
       </Routes>
     </Router>
     </UserContext.Provider>
