@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import '../css/logout.css'
 
 
 const Logout = ({ showPopup, setShowPopup, setIsLoggedIn, setIsAdmin }) => {
+    const navigate = useNavigate();
 
     const handleLogout = async () => {
         await fetch("https://meghana-silk-sarees-3ufw.onrender.com/auth/logout", {
