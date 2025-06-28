@@ -22,7 +22,8 @@ const createCashfreeOrder = async (orderId, amount, customer) => {
       customer_name: customer.name,
       customer_email: customer.email,
       customer_phone: customer.phone
-    }
+    },
+    return_url: `https://meghana-silk-sarees-sy6u.onrender.com/payment-details/${orderId}`
   };
 
   const res = await axios.post(`${BASE_URL}/orders`, body, { headers });
