@@ -40,7 +40,7 @@ const BuyButton = ({ sareeInfo, isLoggedIn }) => {
         cashfree.checkout({
             paymentSessionId: data.payment_session_id,
             redirectTarget: "_self",
-            returnUrl: `https://meghana-silk-sarees-sy6u.onrender.com//payment-details/${orderId}`,
+            returnUrl: `https://meghana-silk-sarees-sy6u.onrender.com/payment-details/${orderId}`,
         }).then((result) => console.log(result))
 
     }
