@@ -10,9 +10,6 @@ const PaymentStatusPopup = ({ details, close }) => {
                 <p><strong>Amount Paid:</strong> ₹{details.payment_amount}</p>
                 <p><strong>Order ID:</strong> {details.order_id}</p>
                 <p><strong>Payment ID:</strong> {details.cf_payment_id}</p>
-                {/* <p><strong>Bank Reference:</strong> {details.bank_reference}</p> */}
-                {/* <p><strong>Card:</strong> {details.payment_method.card.card_network} - {details.payment_method.card.card_number}</p> */}
-                {/* <p><strong>Bank:</strong> {details.payment_method.card.card_bank_name}</p> */}
                 <p><strong>Time:</strong> {new Date(details.payment_time).toLocaleString()}</p>
             </div>
         </div>
