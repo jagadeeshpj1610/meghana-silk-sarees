@@ -22,24 +22,25 @@ const createCashfreeOrder = async (orderId, amount, customer) => {
       customer_name: customer.name,
       customer_email: customer.email,
       customer_phone: customer.phone
-    },
-    return_url: `https://meghana-silk-sarees-sy6u.onrender.com/payment-details/${orderId}`
+    }, order_meta: {
+      return_url: `https://meghana-silk-sarees-sy6u.onrender.com/payment-details/${orderId}`
+    }
   };
 
   const res = await axios.post(`${BASE_URL}/orders`, body, { headers });
   return res.data;
 }
 
-const fetchPaymentDetails =  async (orderId) => {
-   const response = await fetch(`https://sandbox.cashfree.com/pg/orders/${orderId}/payments`, {
-      headers: {
-        'x-client-id': process.env.CASHFREE_APP_ID,
-        'x-client-secret': process.env.CASHFREE_SECRET_KEY,
-        'x-api-version': "2022-09-01"
-      }
-    });
-    const data = await response.json();
-    return data;
+const fetchPaymentDetails = async (orderId) => {
+  const response = await fetch(`https://sandbox.cashfree.com/pg/orders/${orderId}/payments`, {
+    headers: {
+      'x-client-id': process.env.CASHFREE_APP_ID,
+      'x-client-secret': process.env.CASHFREE_SECRET_KEY,
+      'x-api-version': "2022-09-01"
+    }
+  });
+  const data = await response.json();
+  return data;
 }
 
 export {
