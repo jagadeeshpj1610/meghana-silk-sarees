@@ -68,7 +68,7 @@ const signup = async (req, res) => {
     res.json({ newUser, message: "new user created successfully" });
   } catch (err) {
     if (err.errorResponse || err.errorResponse.code === 11000) {
-      return res.status(400).json({ message: "Another user is exist with this email" });
+      return res.status(400).json({ message: "Another user is exist with this Email or Phone" });
     }
     console.log(err)
     res.status(400).json({ message: "Internal server error" })
