@@ -13,7 +13,7 @@ const AddToCart = ({ sareeInfo, isLoggedIn }) => {
 
         if(!isLoggedIn) navigate('/login')
 
-        const response = await fetch('http://localhost:8000/cart', {
+        const response = await fetch('https://meghana-silk-sarees-3ufw.onrender.com/cart', {
             method: 'POST',
             credentials: 'include',
             headers: {

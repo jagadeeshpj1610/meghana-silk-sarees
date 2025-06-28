@@ -35,8 +35,8 @@ const UpdateSaree = ({ sareeInfo, isEditing, setIsEditing, onSuccess }) => {
     formData.append("sareePrice", sareePrice);
 
     const url = isEditing
-      ? `http://localhost:8000/cards/${sareeInfo._id}`
-      : `http://localhost:8000/cards`;
+      ? `https://meghana-silk-sarees-3ufw.onrender.com/cards/${sareeInfo._id}`
+      : `https://meghana-silk-sarees-3ufw.onrender.com/cards`;
     const method = isEditing ? "PUT" : "POST";
 
     try {

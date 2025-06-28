@@ -12,7 +12,7 @@ const SareeDetails = ({ sareesInfo, setSarees, setToastMessage, isAdmin, isLogge
 
     const handleDelete = async () => {
         try {
-            const response = await fetch(`http://localhost:8000/cards/${sareesInfo._id}`, {
+            const response = await fetch(`https://meghana-silk-sarees-3ufw.onrender.com/cards/${sareesInfo._id}`, {
                 method: 'DELETE',
                 credentials: 'include'
             });

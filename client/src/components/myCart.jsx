@@ -11,7 +11,7 @@ const CartPage = ({isLoggedIn}) => {
 
     useEffect(() => {
         const fetchCart = async () => {
-            const res = await fetch("http://localhost:8000/cart", {
+            const res = await fetch("https://meghana-silk-sarees-3ufw.onrender.com/cart", {
                 method: 'GET',
                 credentials: "include",
             });

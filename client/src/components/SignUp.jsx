@@ -17,7 +17,7 @@ const SignUp = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:8000/auth/signup', {
+            const response = await fetch('https://meghana-silk-sarees-3ufw.onrender.com/auth/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, email, password, phone }),

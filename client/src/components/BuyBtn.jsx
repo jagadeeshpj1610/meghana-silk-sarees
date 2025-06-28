@@ -21,7 +21,7 @@ const BuyButton = ({ sareeInfo, isLoggedIn }) => {
             orderId: `${sareeInfo._id}-${Date.now()}`,
             amount: sareeInfo.sareePrice,
         }
-        const res = await fetch("http://localhost:8000/payment/create-order", {
+        const res = await fetch("https://meghana-silk-sarees-3ufw.onrender.com/payment/create-order", {
             method: "POST",
             credentials: "include",
             headers: {

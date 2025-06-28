@@ -4,7 +4,7 @@ import '../css/logout.css'
 const Logout = ({ showPopup, setShowPopup, setIsLoggedIn, setIsAdmin }) => {
 
     const handleLogout = async () => {
-        await fetch("http://localhost:8000/auth/logout", {
+        await fetch("https://meghana-silk-sarees-3ufw.onrender.com/auth/logout", {
             method: "POST",
             credentials: "include",
         });

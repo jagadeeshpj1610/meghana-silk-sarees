@@ -15,7 +15,7 @@ const PaymentSuccess = () => {
     useEffect(() => {
         const fetchPaymentStatus = async () => {
             try {
-                const res = await fetch(`http://localhost:8000/payment/payment-details/${orderId}`, {
+                const res = await fetch(`https://meghana-silk-sarees-3ufw.onrender.com/payment/payment-details/${orderId}`, {
                     method: 'GET',
                     credentials: 'include'
                 });

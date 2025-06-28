@@ -11,7 +11,7 @@ const Sarees = ({isAdmin, isLoggedIn}) => {
 
     const fetchSarees = async () => {
         try {
-            const res = await fetch('http://localhost:8000/cards', {
+            const res = await fetch('https://meghana-silk-sarees-3ufw.onrender.com/cards', {
                 method: 'GET',
                 credentials: 'include'
             });

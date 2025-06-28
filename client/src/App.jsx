@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     const fetchStatus = async () => {
       try {
-        const loginRes = await fetch("http://localhost:8000/auth/isLoggedIn", {
+        const loginRes = await fetch("https://meghana-silk-sarees-3ufw.onrender.com/auth/isLoggedIn", {
           credentials: "include"
         });
         const loginData = await loginRes.json();
@@ -32,7 +32,7 @@ function App() {
         setIsLoggedIn(loginData.isLoggedIn);
         
         
-        const adminRes = await fetch("http://localhost:8000/auth/isAdmin", {
+        const adminRes = await fetch("https://meghana-silk-sarees-3ufw.onrender.com/auth/isAdmin", {
           credentials: "include"
         });
         const adminData = await adminRes.json();

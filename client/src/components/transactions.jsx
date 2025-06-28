@@ -9,7 +9,7 @@ const Transactions = () => {
     const [transactions, setTransactions] = useState([])
     const fetchUserTransactions = async () => {
         try {
-            const response = await fetch('http://localhost:8000/payment', {
+            const response = await fetch('https://meghana-silk-sarees-3ufw.onrender.com/payment', {
                 method: 'GET',
                 credentials: 'include'
             })
