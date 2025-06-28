@@ -16,7 +16,10 @@ const app = express();
 connectToDB();
 
 app.use(cors({
-  origin: 'http://localhost:5173', 
+  origin:[
+     'http://localhost:5173',
+     'https://meghana-silk-sarees-sy6u.onrender.com'
+  ] ,
   credentials: true
 }))
 app.use(express.json());
