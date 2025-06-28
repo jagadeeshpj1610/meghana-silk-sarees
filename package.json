@@ -1,5 +1,6 @@
 {
   "name": "fullstack-app",
+  "type": "module",
   "scripts": {
     "start": "node server/server.js",
     "build": "npm install --prefix client && npm run build --prefix client"
