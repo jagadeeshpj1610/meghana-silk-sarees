@@ -26,6 +26,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
+app.get("/", (req, res) => {
+  res.send("Backend server is running ✅");
+});
+
 app.use('/auth', authRouter);
 app.use('/cards', cardRouter);
 app.use('/cart', cartRouter);
