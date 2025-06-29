@@ -77,18 +77,14 @@ const signup = async (req, res) => {
 
 const logout = (req, res) => {
   try {
-    res.clearCookie('token', {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'None',
-    });
+    res.clearCookie('token');
     res.status(200).json({ message: "Logout successfully" })
   } catch (error) {
     res.status(500).json({ message: "Internal server error" })
   }
 }
 
-const isLoggedIn = async (req, res) => {
+const isLoggedIn = async(req, res) => {
   try {
     // if(req.cookies.token){
     //   return res.json({isLoggedIn: true})
@@ -98,7 +94,7 @@ const isLoggedIn = async (req, res) => {
     if (!token) {
       return res.json({ isLoggedIn: false, user: null });
     }
-    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
     const user = await userModel.findById(decoded.id).select("-password");
 

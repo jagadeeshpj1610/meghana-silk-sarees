@@ -12,7 +12,6 @@ import { fileURLToPath } from "url";
 import fs from "fs";
 
 const app = express();
-app.set('trust proxy', 1);
 
 connectToDB();
 
