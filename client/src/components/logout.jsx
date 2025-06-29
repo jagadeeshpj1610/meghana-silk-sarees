@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import '../css/logout.css'
 
 
-const Logout = ({ showPopup, setShowPopup, setIsLoggedIn, setIsAdmin }) => {
+const Logout = ({ showPopup, setShowPopup, setIsLoggedIn, setIsAdmin, setHasLoggedOut }) => {
     const navigate = useNavigate();
 
     const handleLogout = async () => {
@@ -12,6 +12,7 @@ const Logout = ({ showPopup, setShowPopup, setIsLoggedIn, setIsAdmin }) => {
         });
         setIsLoggedIn(false);
         setIsAdmin(false)
+        setHasLoggedOut(true)
         navigate('/login');
     };
 

@@ -18,37 +18,38 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [isAdmin, setIsAdmin] = useState(null)
   const [userDetails, setUserDetails] = useState(null)
+  const [hasLoggedOut, setHasLoggedOut] = useState(false);
+
 
   useEffect(() => {
-    const fetchStatus = async () => {
-      try {
-        const loginRes = await fetch("https://meghana-silk-sarees-3ufw.onrender.com/auth/isLoggedIn", {
-          credentials: "include"
-        });
-        const loginData = await loginRes.json();
-        // console.log(loginData);
-        setUserDetails(loginData.user)
+  if (hasLoggedOut) return;
 
-        setIsLoggedIn(loginData.isLoggedIn);
+  const fetchStatus = async () => {
+    try {
+      const loginRes = await fetch("https://meghana-silk-sarees-3ufw.onrender.com/auth/isLoggedIn", {
+        credentials: "include"
+      });
+      const loginData = await loginRes.json();
+      setUserDetails(loginData.user);
+      setIsLoggedIn(loginData.isLoggedIn);
 
+      const adminRes = await fetch("https://meghana-silk-sarees-3ufw.onrender.com/auth/isAdmin", {
+        credentials: "include"
+      });
+      const adminData = await adminRes.json();
+      setIsAdmin(adminData.isAdmin);
 
-        const adminRes = await fetch("https://meghana-silk-sarees-3ufw.onrender.com/auth/isAdmin", {
-          credentials: "include"
-        });
-        const adminData = await adminRes.json();
-        console.log(adminData);
-
-        setIsAdmin(adminData.isAdmin);
-        if (!adminRes.ok) {
-          setIsAdmin(false);
-        }
-      } catch (err) {
-        console.log("Error checking login/admin status", err);
+      if (!adminRes.ok) {
+        setIsAdmin(false);
       }
-    };
+    } catch (err) {
+      console.log("Error checking login/admin status", err);
+    }
+  };
 
-    fetchStatus();
-  }, [isLoggedIn]);
+  fetchStatus();
+}, [isLoggedIn, hasLoggedOut]);
+
   
   console.log("isLoggedIn",isLoggedIn);
   console.log("isAdmin",isAdmin);
@@ -59,7 +60,7 @@ function App() {
   return (
     <UserContext.Provider value={{ userDetails, setUserDetails, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }}>
       <Router>
-        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} userDetails={userDetails} />
+        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} userDetails={userDetails} setHasLoggedOut={setHasLoggedOut} />
         <Routes>
           <Route path="/" element={<Home isAdmin={isAdmin} isLoggedIn={isLoggedIn} />} />
           <Route path="/login" element={
