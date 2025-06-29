@@ -3,7 +3,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/SignUp';
 import CartPage from './components/myCart';
-import { BrowserRouter as Router, Routes, Route, data } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import UpdateSaree from './components/upload';
@@ -28,16 +28,16 @@ function App() {
         const loginData = await loginRes.json();
         // console.log(loginData);
         setUserDetails(loginData.user)
-        
+
         setIsLoggedIn(loginData.isLoggedIn);
-        
-        
+
+
         const adminRes = await fetch("https://meghana-silk-sarees-3ufw.onrender.com/auth/isAdmin", {
           credentials: "include"
         });
         const adminData = await adminRes.json();
         console.log(adminData);
-        
+
         setIsAdmin(adminData.isAdmin);
         if (!adminRes.ok) {
           setIsAdmin(false);
@@ -46,31 +46,36 @@ function App() {
         console.log("Error checking login/admin status", err);
       }
     };
-    
+
     fetchStatus();
   }, []);
-  
-  console.log("isLoggedIn",isLoggedIn);
-  console.log("isAdmin",isAdmin);
-  
+
+  console.log("isLoggedIn", isLoggedIn);
+  console.log("isAdmin", isAdmin);
+
 
   if (isLoggedIn === null || isAdmin === null) return <h1 style={{ textAlign: 'center' }}>Loading...</h1>;
 
   return (
     <UserContext.Provider value={{ userDetails, setUserDetails, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }}>
-    <Router>
-      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} userDetails = {userDetails} />
-      <Routes>
-        <Route path="/" element={<Home isAdmin={isAdmin} isLoggedIn = {isLoggedIn} />} />
-        {!isLoggedIn && <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn}   setIsAdmin={setIsAdmin} />} />}
-        {!isLoggedIn && <Route path="/signup" element={<Signup />} />}
-        <Route path="/cart" element={<CartPage isLoggedIn = {isLoggedIn} />} />
-        <Route path='/addNewSaree' element={<UpdateSaree />} />
-        <Route path="/payment-details/:orderId" element={<PaymentSuccess />} />
-        <Route path="/profile" element={<Profile  />} />
-        <Route path="/search" element={<Search  />} />
-      </Routes>
-    </Router>
+      <Router>
+        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} userDetails={userDetails} />
+        <Routes>
+          <Route path="/" element={<Home isAdmin={isAdmin} isLoggedIn={isLoggedIn} />} />
+          <Route path="/login" element={
+            isLoggedIn ? <Navigate to="/" /> : <Login setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />
+          } />
+
+          <Route path="/signup" element={
+            isLoggedIn ? <Navigate to="/" /> : <Signup />
+          } />
+          <Route path="/cart" element={<CartPage isLoggedIn={isLoggedIn} />} />
+          <Route path='/addNewSaree' element={<UpdateSaree />} />
+          <Route path="/payment-details/:orderId" element={<PaymentSuccess />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/search" element={<Search />} />
+        </Routes>
+      </Router>
     </UserContext.Provider>
   );
 }
