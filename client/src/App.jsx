@@ -48,9 +48,11 @@ function App() {
     };
     
     fetchStatus();
-  }, [isLoggedIn]);
+  }, []);
   
-  console.log(isLoggedIn, isAdmin);
+  console.log("isLoggedIn",isLoggedIn);
+  console.log("isAdmin",isAdmin);
+  
 
   if (isLoggedIn === null || isAdmin === null) return <h1 style={{ textAlign: 'center' }}>Loading...</h1>;
 
