@@ -7,12 +7,11 @@ const searchController = async (req, res) => {
     if (!searchText) {
       return res.status(400).json({ message: "Enter the value of searchText" });
     }
-    const results = await cardModel.find({});
+    const results = await cardModel.find({}).populate('sareePhoto');
     if (!results) {
       return res.status(400).json({ message: "Sarees not found" });
     }
     const matched = results.filter((element) => {
-      console.log(element.sareeName)
       return element.sareeName.toLowerCase().includes(searchText.toLowerCase()) || Number(element.sareePrice) === Number(searchText)
     });
     if (matched.length === 0) {
