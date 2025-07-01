@@ -1,4 +1,3 @@
-import React from 'react';
 import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/SignUp';
@@ -51,8 +50,8 @@ function App() {
 }, [isLoggedIn, hasLoggedOut]);
 
   
-  console.log("isLoggedIn",isLoggedIn);
-  console.log("isAdmin",isAdmin);
+  // console.log("isLoggedIn",isLoggedIn);
+  // console.log("isAdmin",isAdmin);
   
 
   if (isLoggedIn === null || isAdmin === null) return <h1 style={{ textAlign: 'center' }}>Loading...</h1>;
