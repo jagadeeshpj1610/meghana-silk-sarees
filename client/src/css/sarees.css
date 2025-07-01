@@ -1,5 +1,5 @@
 
-.sareesContainer {
+.sareesContainer, .searchResults {
     display: grid;
     grid-template-columns: repeat(4, minmax(150px, 1fr));
     gap: 13px 1px;
