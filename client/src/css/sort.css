@@ -1,0 +1,9 @@
+.sortStatusImage{
+  width: 30px;
+}
+
+.sortButton{
+  width: 60px;
+  align-items: center;
+  display: flex;
+}
