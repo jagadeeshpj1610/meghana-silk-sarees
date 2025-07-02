@@ -22,7 +22,7 @@ const Search = () => {
   const handleOnClick = async () => {
     await fetchSearch(userInput)
   }
-  console.log(sarees.length, userInput)
+  console.log(!Array.isArray(sarees), userInput);
 
 
   return (
@@ -33,8 +33,7 @@ const Search = () => {
       </div>
       <div className="searchResults">
         {
-          sarees.length === 0 ? <h1>Loading....</h1>
-            :
+          Array.isArray(sarees) && sarees.length ? 
             sarees.map((saree, index) => {
               return (
                 <div key={saree._id} className="sareeCard">
@@ -42,7 +41,8 @@ const Search = () => {
                   <SareeDetails sareesInfo={saree} />
                 </div>
               )
-            })
+            }) :
+            <h1>Sarees not found</h1>
         }
       </div>
     </div>
