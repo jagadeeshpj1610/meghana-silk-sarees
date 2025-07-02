@@ -30,7 +30,6 @@ const SareeDetails = ({ sareesInfo, setSarees, setToastMessage, isAdmin, isLogge
     };
 
     const handleUpdate = (updatedCard) => {
-        // console.log(updatedCard);
 
         setSarees(prev =>
             prev.map(card =>

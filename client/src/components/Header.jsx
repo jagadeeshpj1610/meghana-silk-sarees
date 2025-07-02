@@ -14,7 +14,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, setHasLoggedOu
                 <Link to='/' className='linkHeading'><h1>Meghana Silk Sarees</h1></Link>
             </div>
             <div className="headerButtons">
-                <Link to='/search' className = 'searchOption'>Search</Link>
+                <Link to='/search' state={{ isAdmin, isLoggedIn }} className='searchOption'>Search</Link>
                 {isAdmin && <Link to='/addNewSaree' className='addNewSaree'>Add New Saree</Link>}
                 {!isLoggedIn && (
                     <>
@@ -26,7 +26,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, setHasLoggedOu
                 {isLoggedIn && (
                     <>
                         <button className='logoutBtn' onClick={() => setShowPopup(true)}>Logout</button>
-                        <Logout showPopup={showPopup} setShowPopup={setShowPopup} setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} setHasLoggedOut = {setHasLoggedOut} />
+                        <Logout showPopup={showPopup} setShowPopup={setShowPopup} setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} setHasLoggedOut={setHasLoggedOut} />
                     </>
                 )}
                 {isLoggedIn && <CartButton isAdmin={isAdmin} />}

@@ -21,38 +21,34 @@ function App() {
 
 
   useEffect(() => {
-  if (hasLoggedOut) return;
+    if (hasLoggedOut) return;
 
-  const fetchStatus = async () => {
-    try {
-      const loginRes = await fetch("https://meghana-silk-sarees-3ufw.onrender.com/auth/isLoggedIn", {
-        credentials: "include"
-      });
-      const loginData = await loginRes.json();
-      setUserDetails(loginData.user);
-      setIsLoggedIn(loginData.isLoggedIn);
+    const fetchStatus = async () => {
+      try {
+        const loginRes = await fetch("https://meghana-silk-sarees-3ufw.onrender.com/auth/isLoggedIn", {
+          credentials: "include"
+        });
+        const loginData = await loginRes.json();
+        setUserDetails(loginData.user);
+        setIsLoggedIn(loginData.isLoggedIn);
 
-      const adminRes = await fetch("https://meghana-silk-sarees-3ufw.onrender.com/auth/isAdmin", {
-        credentials: "include"
-      });
-      const adminData = await adminRes.json();
-      setIsAdmin(adminData.isAdmin);
+        const adminRes = await fetch("https://meghana-silk-sarees-3ufw.onrender.com/auth/isAdmin", {
+          credentials: "include"
+        });
+        const adminData = await adminRes.json();
+        setIsAdmin(adminData.isAdmin);
 
-      if (!adminRes.ok) {
-        setIsAdmin(false);
+        if (!adminRes.ok) {
+          setIsAdmin(false);
+        }
+      } catch (err) {
+        console.log("Error checking login/admin status", err);
       }
-    } catch (err) {
-      console.log("Error checking login/admin status", err);
-    }
-  };
+    };
 
-  fetchStatus();
-}, [isLoggedIn, hasLoggedOut]);
+    fetchStatus();
+  }, [isLoggedIn, hasLoggedOut]);
 
-  
-  // console.log("isLoggedIn",isLoggedIn);
-  // console.log("isAdmin",isAdmin);
-  
 
   if (isLoggedIn === null || isAdmin === null) return <h1 style={{ textAlign: 'center' }}>Loading...</h1>;
 
