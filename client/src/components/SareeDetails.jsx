@@ -68,8 +68,8 @@ const SareeDetails = ({ sareesInfo, setSarees, setToastMessage, isAdmin, isLogge
                         </div>}
                     </div>
                     <div className='buyBtns'>
-                        {!isAdmin && <AddToCart sareeInfo={sareesInfo} isLoggedIn = {isLoggedIn} />}
-                        {!isAdmin && <BuyButton sareeInfo={sareesInfo} isLoggedIn = {isLoggedIn}  />}
+                        {!isAdmin && <AddToCart sareeInfo={sareesInfo} isLoggedIn={isLoggedIn} />}
+                        {!isAdmin && <BuyButton sareeInfo={sareesInfo} isLoggedIn={isLoggedIn} />}
                     </div>
                 </div>
             )}

@@ -18,7 +18,7 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(null)
   const [userDetails, setUserDetails] = useState(null)
   const [hasLoggedOut, setHasLoggedOut] = useState(false);
-
+  const [sarees, setSarees] = useState([]);
 
   useEffect(() => {
     if (hasLoggedOut) return;
@@ -53,7 +53,7 @@ function App() {
   if (isLoggedIn === null || isAdmin === null) return <h1 style={{ textAlign: 'center' }}>Loading...</h1>;
 
   return (
-    <UserContext.Provider value={{ userDetails, setUserDetails, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }}>
+    <UserContext.Provider value={{ userDetails, setUserDetails, isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, sarees, setSarees }}>
       <Router>
         <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin} userDetails={userDetails} setHasLoggedOut={setHasLoggedOut} />
         <Routes>

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import '../css/sarees.css'
+import '../css/sarees.css';
 import SareeDetails from "./SareeDetails";
+import { useUser } from "./userContext";
 
 
 
 const Sarees = ({ isAdmin, isLoggedIn }) => {
-    const [sarees, setSarees] = useState([]);
     const [toastMessage, setToastMessage] = useState("");
-    const [data, setData] = useState(null)
+    const [data, setData] = useState(null);
+    const {sarees, setSarees} = useUser();
 
     const fetchSarees = async () => {
         try {
