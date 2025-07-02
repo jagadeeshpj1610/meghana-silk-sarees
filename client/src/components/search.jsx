@@ -6,8 +6,12 @@ const Search = () => {
   const [userInput, setUserInput] = useState("");
   const [sarees, setSarees] = useState([]);
 
+  useEffect(() => {
+    fetchSearch("")
+  },[])
+
   const fetchSearch = async (searchText) => {
-    const response = await fetch(`https://meghana-silk-sarees-3ufw.onrender.com/query/search/${searchText}`, {
+    const response = await fetch(`http://localhost:8000/query/search/${searchText}`, {
       credentials: "include",
     });
     const result = await response.json();
