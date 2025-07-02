@@ -1,16 +1,16 @@
 import { useState } from "react";
 import up from "../assets/up.png";
 import down from "../assets/down.png";
-import "../css/sort.css"
+import "../css/sort.css";
 import { useUser } from "./userContext";
 
 
 const SortButton = () => {
   const [isAscending, setIsAscending] = useState(false);
-  const {sarees, setSarees} = useUser();
+  const { setSarees } = useUser();
 
   const handleOnClick = async () => {
-    const response = await fetch(`https://meghana-silk-sarees-3ufw.onrender.com/query/sort?sortBy=sareeName&isAscending=${isAscending}`,{
+    const response = await fetch(`https://meghana-silk-sarees-3ufw.onrender.com/query/sort?sortBy=sareeName&isAscending=${isAscending}`, {
       credentials: "include",
     });
     const data = await response.json();
