@@ -4,9 +4,7 @@ const searchController = async (req, res) => {
   try {
 
     const { searchText } = req.params;
-    if (!searchText) {
-      return res.status(400).json({ message: "Enter the value of searchText" });
-    }
+
     const results = await cardModel.find({}).populate('sareePhoto');
     if (!results) {
       return res.status(400).json({ message: "Sarees not found" });
@@ -18,6 +16,15 @@ const searchController = async (req, res) => {
       return res.status(400).json({ message: "Sarees not found" });
     }
     res.json(matched)
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ message: "Internal Server Error" });
+  }
+}
+
+const redirectController = async (req, res) => {
+  try {
+    res.redirect('/query/search/ ')
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: "Internal Server Error" });
@@ -37,5 +44,6 @@ const sortController = async (req, res) => {
 
 export {
   searchController,
+  redirectController,
   sortController,
 }
