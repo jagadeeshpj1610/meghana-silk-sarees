@@ -7,6 +7,8 @@ import PaymentStatus from './paymentStatus';
 
 const Transactions = () => {
     const [transactions, setTransactions] = useState([])
+    const [copiedId, setCopiedId] = useState(null);
+
     const fetchUserTransactions = async () => {
         try {
             const response = await fetch('https://meghana-silk-sarees-3ufw.onrender.com/payment', {
@@ -29,8 +31,8 @@ const Transactions = () => {
     return (
         <div>
             <div className="top">
-            <h2 style={{ marginBottom: '10px' }}>My Transactions</h2>
-            <PaymentStatus />
+                <h2 style={{ marginBottom: '10px' }}>My Transactions</h2>
+                <PaymentStatus />
             </div>
             {transactions && transactions.length > 0 ? (
                 <div className='cardsContaine'>
@@ -40,7 +42,27 @@ const Transactions = () => {
                             <div className="productDetails">
                                 <p className='sareeName'><strong>Name:</strong> {transaction.card.sareeName}</p>
                                 <p className='sareePrice'><strong>Price:</strong> ₹{transaction.card.sareePrice}</p>
-                                <p className='sareePrice'><strong>Order Id:</strong> {transaction.orderId}</p>
+                                <p className='sareePrice'>
+                                    <strong>Order Id:</strong> {transaction.orderId}
+                                    <button
+                                        onClick={() => {
+                                            navigator.clipboard.writeText(transaction.orderId);
+                                            setCopiedId(transaction.orderId);
+                                            setTimeout(() => setCopiedId(null), 2000);
+                                        }}
+                                        style={{
+                                            marginLeft: '10px',
+                                            padding: '2px 6px',
+                                            fontSize: '0.8rem',
+                                            cursor: 'pointer',
+                                            backgroundColor: copiedId === transaction.orderId ? '#d4edda' : '#f0f0f0',
+                                            border: '1px solid #ccc',
+                                            borderRadius: '4px'
+                                        }}
+                                    >
+                                        {copiedId === transaction.orderId ? "Copied!" : "Copy"}
+                                    </button>
+                                </p>
                             </div>
                         </div>
                     ))}
