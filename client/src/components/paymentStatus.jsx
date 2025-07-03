@@ -41,7 +41,7 @@ const PaymentStatus = () => {
             </button>
 
             {showPopup && (
-                <div className='popupOverlay'>
+                <div className='popupOverlay' onClick={setShowPopup(false)}>
                     <div className='popupBox'>
                         <h3>Enter Order ID</h3>
                         <input

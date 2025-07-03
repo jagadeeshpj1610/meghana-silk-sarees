@@ -1,6 +1,10 @@
 import '../App.css'
 
 const PaymentStatusPopup = ({ details, close }) => {
+    if (!details || typeof details !== "object") {
+        return <div style={{ padding: "10px", textAlign: "center", color: "red" }}>{details || "No details available."}</div>;
+    }
+
     return (
         <div className="popupBack" onClick={close}>
             <div className="popupSimple">

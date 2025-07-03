@@ -16,7 +16,7 @@ const Transactions = () => {
                 credentials: 'include'
             })
             const data = await response.json()
-            console.log(data);
+            // console.log(data);
             setTransactions(data.orders)
 
         } catch (error) {
