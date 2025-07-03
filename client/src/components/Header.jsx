@@ -4,7 +4,7 @@ import Logout from './logout';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import CartButton from './cartButton';
-import SortButton from './sortButton';
+import SortButton from './SortButton'
 
 const Header = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, setHasLoggedOut }) => {
     const navigate = useNavigate();
