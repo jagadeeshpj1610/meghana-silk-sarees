@@ -34,7 +34,8 @@ const redirectController = async (req, res) => {
 const sortController = async (req, res) => {
   try {
     const { sortBy, isAscending } = req.query;
-    const sorted = await cardModel.find().sort({ [sortBy]: isAscending === "true" ? 1 : -1 });
+    const sorted = await cardModel.find().populate({
+      path: "sareePhoto"}).sort({ [sortBy]: isAscending === "true" ? 1 : -1 });
     res.json(sorted)
   } catch (err) {
     console.log(err);
