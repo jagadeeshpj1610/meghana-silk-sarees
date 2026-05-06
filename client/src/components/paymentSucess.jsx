@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import PaymentStatusPopup from './paymentStatusPopup';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const PaymentSuccess = () => {
     const { orderId } = useParams();
     const [loading, setLoading] = useState(true);
@@ -15,7 +17,7 @@ const PaymentSuccess = () => {
     useEffect(() => {
         const fetchPaymentStatus = async () => {
             try {
-                const res = await fetch(`https://meghana-silk-sarees-3ufw.onrender.com/payment/payment-details/${orderId}`, {
+                const res = await fetch(`${API_URL}/payment-details/${orderId}`, {
                     method: 'GET',
                     credentials: 'include'
                 });

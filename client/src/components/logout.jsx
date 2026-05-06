@@ -1,12 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import '../css/logout.css'
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 const Logout = ({ showPopup, setShowPopup, setIsLoggedIn, setIsAdmin, setHasLoggedOut }) => {
     const navigate = useNavigate();
 
     const handleLogout = async () => {
-        await fetch("https://meghana-silk-sarees-3ufw.onrender.com/auth/logout", {
+        await fetch(`${API_URL}/auth/logout`, {
             method: "POST",
             credentials: "include",
         });

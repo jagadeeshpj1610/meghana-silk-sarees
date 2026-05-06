@@ -2,6 +2,8 @@ import { useState } from 'react';
 import '../css/sarees.css'
 import { useNavigate } from 'react-router-dom';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const BuyButton = ({ sareeInfo, isLoggedIn }) => {
     const navigate = useNavigate()
     const [isClicked, setIsClicked] = useState(false);
@@ -21,7 +23,7 @@ const BuyButton = ({ sareeInfo, isLoggedIn }) => {
             orderId: `${sareeInfo._id}-${Date.now()}`,
             amount: sareeInfo.sareePrice,
         }
-        const res = await fetch("https://meghana-silk-sarees-3ufw.onrender.com/payment/create-order", {
+        const res = await fetch(`${API_URL}/payment/create-order`, {
             method: "POST",
             credentials: "include",
             headers: {

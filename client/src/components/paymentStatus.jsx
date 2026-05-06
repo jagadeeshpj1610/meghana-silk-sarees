@@ -2,6 +2,8 @@ import { useState } from 'react';
 import '../css/profile.css';
 import PaymentStatusPopup from './paymentStatusPopup';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const PaymentStatus = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [orderId, setOrderId] = useState('');
@@ -11,7 +13,7 @@ const PaymentStatus = () => {
     const checkPaymentStatus = async () => {
         try {
             setLoading(true);
-            const response = await fetch(`https://meghana-silk-sarees-3ufw.onrender.com/payment/payment-details/${orderId}`, {
+            const response = await fetch(`${API_URL}/payment/payment-details/${orderId}`, {
                 method: 'GET',
                 credentials: 'include',
             });

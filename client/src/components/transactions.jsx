@@ -3,7 +3,7 @@ import { useState } from "react"
 import '../css/profile.css'
 import PaymentStatus from './paymentStatus';
 
-
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Transactions = () => {
     const [transactions, setTransactions] = useState([])
@@ -11,7 +11,7 @@ const Transactions = () => {
 
     const fetchUserTransactions = async () => {
         try {
-            const response = await fetch('https://meghana-silk-sarees-3ufw.onrender.com/payment', {
+            const response = await fetch(`${API_URL}/payment`, {
                 method: 'GET',
                 credentials: 'include'
             })

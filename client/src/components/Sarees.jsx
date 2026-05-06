@@ -3,7 +3,7 @@ import '../css/sarees.css';
 import SareeDetails from "./SareeDetails";
 import { useUser } from "./userContext";
 
-
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Sarees = ({ isAdmin, isLoggedIn }) => {
     const [toastMessage, setToastMessage] = useState("");
@@ -12,7 +12,7 @@ const Sarees = ({ isAdmin, isLoggedIn }) => {
 
     const fetchSarees = async () => {
         try {
-            const res = await fetch('https://meghana-silk-sarees-3ufw.onrender.com/cards', {
+            const res = await fetch(`${API_URL}/cards`, {
                 method: 'GET',
                 credentials: 'include'
             });

@@ -2,8 +2,9 @@ import '../css/mycart.css'
 
 import { useEffect, useState } from 'react';
 import BuyButton from './BuyBtn';
-
 import RemoveFromCart from './removeFromCart';
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const CartPage = ({isLoggedIn}) => {
     const [cards, setCards] = useState([])
@@ -11,7 +12,7 @@ const CartPage = ({isLoggedIn}) => {
 
     useEffect(() => {
         const fetchCart = async () => {
-            const res = await fetch("https://meghana-silk-sarees-3ufw.onrender.com/cart", {
+            const res = await fetch(`${API_URL}/cart`, {
                 method: 'GET',
                 credentials: "include",
             });

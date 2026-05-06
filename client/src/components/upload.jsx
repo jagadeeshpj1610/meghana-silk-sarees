@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import '../css/addNewSaree.css'
 import { useNavigate } from 'react-router-dom';
 
+const API_URL = import.meta.env.VITE_API_URL;
 
 const UpdateSaree = ({ sareeInfo, isEditing, setIsEditing, onSuccess }) => {
   const [file, setFile] = useState(null);

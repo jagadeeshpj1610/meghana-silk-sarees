@@ -3,6 +3,8 @@ import SareeDetails from "./SareeDetails";
 import "../css/search.css"
 import { useLocation } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Search = () => {
   const [userInput, setUserInput] = useState("");
   const [sarees, setSarees] = useState([]);
@@ -16,7 +18,7 @@ const Search = () => {
   }, [])
 
   const fetchSearch = async (searchText) => {
-    const response = await fetch(`https://meghana-silk-sarees-3ufw.onrender.com/query/search/${searchText}`, {
+    const response = await fetch(`${API_URL}/query/search/${searchText}`, {
       credentials: "include",
     });
     const result = await response.json();

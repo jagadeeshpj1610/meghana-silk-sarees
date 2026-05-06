@@ -2,6 +2,7 @@ import { useState } from "react";
 import '../App.css'
 import { useNavigate } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL;
 
 const AddToCart = ({ sareeInfo, isLoggedIn }) => {
     const navigate = useNavigate()
@@ -13,7 +14,7 @@ const AddToCart = ({ sareeInfo, isLoggedIn }) => {
 
         if(!isLoggedIn) navigate('/login')
 
-        const response = await fetch('https://meghana-silk-sarees-3ufw.onrender.com/cart', {
+        const response = await fetch(`${API_URL}/cart`, {
             method: 'POST',
             credentials: 'include',
             headers: {

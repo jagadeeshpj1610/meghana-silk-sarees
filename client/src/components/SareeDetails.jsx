@@ -7,12 +7,14 @@ import Modal from './popup'
 import AddToCart from './AddToCart'
 import BuyButton from './BuyBtn'
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const SareeDetails = ({ sareesInfo, setSarees, setToastMessage, isAdmin, isLoggedIn }) => {
     const [isEditing, setIsEditing] = useState(false);
 
     const handleDelete = async () => {
         try {
-            const response = await fetch(`https://meghana-silk-sarees-3ufw.onrender.com/cards/${sareesInfo._id}`, {
+            const response = await fetch(`${API_URL}/cards/${sareesInfo._id}`, {
                 method: 'DELETE',
                 credentials: 'include'
             });

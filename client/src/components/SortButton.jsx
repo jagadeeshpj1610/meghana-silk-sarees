@@ -4,13 +4,14 @@ import down from "../assets/down.png";
 import "../css/sort.css";
 import { useUser } from "./userContext";
 
+const API_URL = import.meta.env.VITE_API_URL;
 
 const SortButton = () => {
   const [isAscending, setIsAscending] = useState(false);
   const { setSarees } = useUser();
 
   const handleOnClick = async () => {
-    const response = await fetch(`https://meghana-silk-sarees-3ufw.onrender.com/query/sort?sortBy=sareeName&isAscending=${isAscending}`, {
+    const response = await fetch(`${API_URL}/query/sort?sortBy=sareeName&isAscending=${isAscending}`, {
       credentials: "include",
     });
     const data = await response.json();

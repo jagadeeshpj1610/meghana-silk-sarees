@@ -4,6 +4,8 @@ import Header from "./Header";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const SignUp = () => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("");
@@ -17,7 +19,7 @@ const SignUp = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('https://meghana-silk-sarees-3ufw.onrender.com/auth/signup', {
+            const response = await fetch(`${API_URL}/auth/signup`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, email, password, phone }),

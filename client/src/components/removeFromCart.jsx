@@ -1,12 +1,14 @@
 import { useState } from "react";
-import '../css/sarees.css'
+import '../css/sarees.css';
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const RemoveFromCart = ({ cardId, toRemove }) => {
 
     const removeFromCart = async () => {
  
         try {
-            const response = await fetch('https://meghana-silk-sarees-3ufw.onrender.com/cart', {
+            const response = await fetch(`${API_URL}/cart`, {
                 method: 'DELETE',
                 credentials: 'include',
                 headers: {
