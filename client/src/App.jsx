@@ -11,7 +11,7 @@ import Profile from './components/profile';
 import { UserContext } from './components/userContext';
 import Search from './components/search';
 
-
+const API_URL = import.meta.env.VITE_API_URL;
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -25,14 +25,14 @@ function App() {
 
     const fetchStatus = async () => {
       try {
-        const loginRes = await fetch("https://meghana-silk-sarees-3ufw.onrender.com/auth/isLoggedIn", {
+        const loginRes = await fetch(`${API_URL}/auth/isLoggedIn`, {
           credentials: "include"
         });
         const loginData = await loginRes.json();
         setUserDetails(loginData.user);
         setIsLoggedIn(loginData.isLoggedIn);
 
-        const adminRes = await fetch("https://meghana-silk-sarees-3ufw.onrender.com/auth/isAdmin", {
+        const adminRes = await fetch(`${API_URL}/auth/isAdmin`, {
           credentials: "include"
         });
         const adminData = await adminRes.json();
